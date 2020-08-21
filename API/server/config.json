@@ -1,0 +1,24 @@
+{
+  "GENERAL": {
+    "puertoServidor": 3000,
+    "puertoWeb": 1111
+  },
+  "LOG": {
+    "ruta": "./log",
+    "activo": true
+  },
+  "DATABASE": {
+    "user": "sa",
+    "password": "Ponce1497",
+    "server": "localhost\\sqlexpress",
+    "database": "APPA",
+    "options": {
+      "enableArithAbort": true
+    }
+  },
+  "SESION": {
+    "tokenSecret": "ABC1234",
+    "tiempo": 60,
+    "tiempoUnidad": "minutes"
+  }
+}
