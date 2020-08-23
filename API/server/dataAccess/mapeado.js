@@ -1,5 +1,4 @@
-class Persona {
-  Id;
+class PERSONA {
   Nombre;
   Apellido;
   IdEmpresa;
@@ -22,4 +21,24 @@ class Persona {
   }
 }
 
-module.exports = { Persona };
+class USUARIO {
+  IdPersona;
+  Usuario;
+  IdRol;
+  Ci;
+  Contrasena;
+  Habilitado;
+  Borrado;
+
+  constructor(persona) {
+    this.IdPersona = persona["IdPersona"] || "";
+    this.Usuario = persona["Usuario"] || "";
+    this.idRol = persona["idRol"] || "";
+    this.Ci = persona["Ci"] || "";
+    this.Contrasena = persona["Contrasena"] || "";
+    this.Habilitado = persona["Habilitado"] || "";
+    this.Borrado = persona["Borrado"] || "";
+  }
+}
+
+module.exports = { PERSONA, USUARIO };

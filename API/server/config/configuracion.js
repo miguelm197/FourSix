@@ -15,7 +15,7 @@ exports.DATABASE = {
   user: null,
   password: null,
   server: null,
-  databse: null,
+  database: null,
   options:{
     enableArithAbort:null
   }
@@ -55,14 +55,9 @@ exports.cargarConfiguracion = function () {
 
 
     
-    console.log("Configuración cargada correctamente");
     return this;
   } catch (error) {
     console.log(error);
-    // if (error.indexOf("SyntaxError") >= 0) {
-    //   console.log("ERROR en el formato del archivo './config'");
-    //   return 0;
-    // }
   }
 };
 

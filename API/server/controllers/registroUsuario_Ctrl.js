@@ -1,15 +1,15 @@
 const { Generico } = require("../entidades/Genericos");
-const { Persona } = require("../entidades/Persona");
+const { Usuario } = require("../classes/Usuario");
 
-exports.registroUsuario = (req, res) => {
+exports.registroUsuario = async (req, res) => {
   let body = req.body;
-  const result = new Generico();
+  let result = new Generico();
 
-  const persona = new Persona({Nombre:"Miguel"});
+  const usuario = new Usuario(body);
 
-  console.log(persona);
+  let resp = await usuario.salvarUsuario();
 
+  result = resp;
 
-  
-  res.status(result.Status).json(result);
+  res.status(resp.Status).json(result);
 };

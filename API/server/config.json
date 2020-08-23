@@ -11,7 +11,7 @@
     "user": "sa",
     "password": "Ponce1497",
     "server": "localhost\\sqlexpress",
-    "database": "APPA",
+    "database": "FourSix",
     "options": {
       "enableArithAbort": true
     }

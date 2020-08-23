@@ -1,9 +1,9 @@
 
 
-CREATE DATABASE APPA
+CREATE DATABASE FourSix
 GO
 
-USE APPA
+USE FourSix
 
 
 
@@ -75,7 +75,6 @@ CREATE TABLE USUARIO (
 	IdPersona       BIGINT			NOT NULL				   PRIMARY KEY  ,
 	Usuario			VARCHAR(50)		NOT NULL								,
 	IdRol			INT				NULL									,
-	Ci				BIGINT			NULL							UNIQUE  ,
 	Contrasena		VARCHAR(100)	NOT NULL								,
 	Habilitado		BIT				NOT NULL								,
 	Borrado			BIT				NOT NULL								,
@@ -177,3 +176,7 @@ REFERENCES VENTA (Id)
 
 ALTER TABLE VENTA_ITEM WITH CHECK ADD CONSTRAINT FK_VENTA_ITEM_ITEM FOREIGN KEY(IdItem)
 REFERENCES ITEMS (Id)
+
+
+GO
+INSERT INTO ROL VALUES (1, 'Administrador', 'Administrador', 0);

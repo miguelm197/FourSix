@@ -1,26 +1,26 @@
-var config = require("../config/configuracion");
-const mssql = require("mssql");
+const config = require("../config/configuracion").cargarConfiguracion();
+const { DataBaseResult } = require("../entidades/Genericos");
 
-/**
- * Función que ejecuta una query en la BD
- * @param {String} consulta (String) Query a ejecutar
- * @param {Function} callback (Function) Función que se ejecuta al realizar la query  (err, result)
- */
-exports.query = function (consulta, callback) {
-  mssql
-    .connect(config.DATABASE)
-    .then((pool) => {
-      let result = pool.request().query(consulta);
-      mssql.close();
-      return result;
-    })
-    .then((result) => {
-      mssql.close();
-      callback(false, result.recordset);
-    })
-    .catch((err) => {
-      console.log("error handler");
-      mssql.close();
-      callback(err);
-    });
+const sql = require("mssql");
+
+const DBACCESS = async function (consulta) {
+  let dbResult = new DataBaseResult();
+
+  try {
+
+    let pool = await sql.connect(config.DATABASE);
+    let res = await pool.request().query(consulta);
+
+    dbResult.Data = res.recordset;
+    dbResult.Cant = res.rowsAffected[0];
+    dbResult.Output = res.output;
+    dbResult.RowsAffected = res.rowsAffected;
+  } catch (err) {
+    dbResult.Error = err;
+    dbResult.Message = err.toString();
+  } finally {
+    return dbResult;
+  }
 };
+
+module.exports = { DBACCESS };
