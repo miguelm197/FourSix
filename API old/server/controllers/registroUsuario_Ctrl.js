@@ -1,7 +1,7 @@
 const { Generico } = require("../entidades/Genericos");
 const { Usuario } = require("../classes/Usuario");
 
-exports.registroUsuario = async (req, res) => {
+let registroUsuario = async (req, res) => {
   let body = req.body;
   let result = new Generico();
 
@@ -13,3 +13,5 @@ exports.registroUsuario = async (req, res) => {
 
   res.status(resp.Status).json(result);
 };
+
+module.exports = { registroUsuario };
