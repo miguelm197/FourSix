@@ -4,6 +4,24 @@ const bodyParser = require("body-parser");
 
 const app = express();
 
+
+
+
+//ESTO PERMITE RECIBIR PETICIONES FUERA DE ESTE DOMINIO
+function perimitirCrossDomain(req, res, next) {
+   //en vez de * se puede definir SÓLO los orígenes que permitimos
+   res.header('Access-Control-Allow-Origin', '*');
+
+   //metodos http permitidos para CORS
+   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+   res.header('Access-Control-Allow-Headers', 'Content-Type');
+   next();
+ }
+
+
+ // Middlewares
+app.use(perimitirCrossDomain);
+
 // Parsea application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());

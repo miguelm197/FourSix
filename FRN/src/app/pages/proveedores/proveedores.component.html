@@ -1,0 +1,31 @@
+<!-- <p>proveedores works!</p> -->
+<div class="pantalla">
+    <h2>Proveedores</h2>
+
+    <table datatable [dtOptions]="dtOptions" class="row-border hover">
+        <thead>
+            <tr>
+                <th>Código</th>
+                <th>Nombre</th>
+                <th>Telefono</th>
+                <th>Direccion</th>
+                <th>RUT</th>
+                <th>RazonSocial</th>
+            </tr>
+        </thead>
+
+        <tfoot style="display: table-header-group" class="filtros">
+            <tr>
+                <th><input class="form-control" type="search" placeholder="CODIGO ..." /></th>
+                <th><input class="form-control" type="search" placeholder="NOMBRE ..." /></th>
+                <th><input class="form-control" type="search" placeholder="TELEFONO ..." /></th>
+                <th><input class="form-control" type="search" placeholder="DIRECCION ..." /></th>
+                <th><input class="form-control" type="search" placeholder="RUT ..." /></th>
+                <th><input class="form-control" type="search" placeholder="RAZON SOCIAL ..." /></th>
+            </tr>
+        </tfoot>
+
+       <tbody></tbody>
+    </table>
+
+</div>

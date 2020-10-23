@@ -1,0 +1,98 @@
+/* You can add global styles to this file, and also import other style files */
+body {
+    margin: 0;
+    background-color: #e7eef8;
+}
+
+body * {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    font-family: "Poppins", sans-serif;
+}
+
+ul {
+    padding: 0;
+    margin: 0;
+
+    li {
+        list-style: none;
+    }
+}
+
+.routerOutlet {
+    position: absolute;
+    width: calc(100% - 290px);
+    height: calc(100% - 190px);
+    top: 130px;
+    right: 0;
+    padding: 30px;
+    overflow-y: auto;
+}
+
+.pantalla {
+    background-color: white;
+    padding: 30px;
+    padding-top: 10px;
+}
+
+.divisor {
+    width: 100%;
+    height: 1px;
+    background-color: #d4d6e0;
+}
+
+// Titulos
+h2 {
+    color: #0f1535;
+}
+.titulo3 {
+    font-weight: 700;
+    letter-spacing: 2px;
+    font-size: 14px;
+}
+
+// Tablas
+
+
+// Helpers
+.pl-1 {
+    padding-left: 10px;
+}
+.pl-2 {
+    padding-left: 20px;
+}
+.pl-5 {
+    padding-left: 50px;
+}
+
+.mr-05 {
+    margin-right: 5px;
+}
+.mr-1 {
+    margin-right: 10px;
+}
+.mr-2 {
+    margin-right: 20px;
+}
+.mr-3 {
+    margin-right: 30px;
+}
+.mr-4 {
+    margin-right: 40px;
+}
+
+// Animate delay
+.animate__delay-01s {
+    animation-delay: 0.1s;
+}
+.animate__delay-02s {
+    animation-delay: 0.2s;
+}
+.animate__delay-03s {
+    animation-delay: 0.3s;
+}
+.animate__delay-04s {
+    animation-delay: 0.4s;
+}
+.animate__delay-05s {
+    animation-delay: 0.5s;
+}

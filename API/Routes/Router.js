@@ -4,11 +4,17 @@ const router = express.Router();
 
 // Controladores
 const Proveedores_Ctrl = require("../controllers/Proveedores_Controller");
+const Clientes_Ctrl = require("../Controllers/Clientes_Controller")
 
 
+// Proveedores
+ router.route("/AltaProveedor").post(Proveedores_Ctrl.AltaProveedor);
+ router.route("/ObtenerProveedores").post(Proveedores_Ctrl.ObtenerProveedores);
 
-// Alta Proveedor
- router.route("/altaProveedor").post(Proveedores_Ctrl.AltaProveedor);
+// Clientes
+ router.route("/AltaCliente").post(Clientes_Ctrl.AltaCliente);
+ router.route("/ObtenerClientes").get(Clientes_Ctrl.ObtenerClientes);
+
 
 app.use(router);
 

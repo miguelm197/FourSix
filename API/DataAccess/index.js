@@ -1,5 +1,5 @@
 const config = require("../Config/Configuracion").cargarConfiguracion();
-const { DataBaseResult } = require("../entidades/Genericos");
+const { DataBaseResult } = require("../Entities/Genericos");
 
 const sql = require("mssql");
 
@@ -16,7 +16,9 @@ const DBACCESS = async function (consulta) {
       dbResult.RowsAffected = res.rowsAffected;
    } catch (err) {
       dbResult.Error = err;
+      dbResult.ErrorDetail = err;
       dbResult.Message = err.toString();
+
    } finally {
       return dbResult;
    }

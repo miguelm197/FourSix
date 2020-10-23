@@ -5,8 +5,9 @@ class BD_Proveedores {
    Nombre = null;
    Telefono = null;
    Direccion = null;
-   Rut = null;
+   RUT = null;
    RazonSocial = null;
+   Activo = 1;
 
    constructor(proveedor) {
       Utils.setDefaultDataClass(this, proveedor);
@@ -18,6 +19,24 @@ class BD_Proveedores {
    }
 }
 
+class BD_Clientes {
+   Nombre = null;
+   Telefono = null;
+   Direccion = null;
+   Mail = null;
+
+
+   constructor(cliente) {
+      Utils.setDefaultDataClass(this, cliente);
+
+      if (this.Nombre) this.Nombre = "'" + this.Nombre + "'";
+      if (this.Direccion) this.Direccion = "'" + this.Direccion + "'";
+      if (this.Mail) this.Mail = "'" + this.Mail + "'";
+   }
+}
+
+
 module.exports = {
    BD_Proveedores,
+   BD_Clientes,
 };

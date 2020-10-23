@@ -94,7 +94,8 @@ const Utils = {
    },
 
     setDefaultDataClass: (clase, datos) => {
-        if (datos) {
+       console.log(clase)
+       if (datos) {
             Object.keys(datos).forEach((key) => {
                 try { clase[key] = datos[key] } catch (e) { }
           });

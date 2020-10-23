@@ -1,0 +1,44 @@
+.caja {
+    position: absolute;
+    top: 160px;
+    width: 50%;
+    max-width: 230px;
+    max-height: calc(100% - 190px);
+    height: auto;
+    background-color: white;
+
+    ul {
+        li {
+            padding: 15px 30px;
+            color: rgb(110, 110, 110);
+            border-right: 0 solid #1a265f;
+            cursor: pointer;
+
+            fa-icon {
+                color: #455eee;
+                transition: all 0.3s;
+            }
+
+            &:hover {
+                background-color: #e7e7e731;
+                color: #1a265f;
+                font-weight: 700;
+
+                fa-icon {
+                    color: #1a265f;
+                }
+            }
+        }
+
+        li.activo {
+            font-weight: 700;
+            color: #1a265f;
+            border-right: 4px solid #1a265f;
+            background-color: #e7e7e711;
+            
+            fa-icon {
+                color: #1a265f;
+            }   
+        }
+    }
+}
