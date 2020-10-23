@@ -11,6 +11,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { MenuComponent } from './components/menu/menu.component';
 
 import { ProveedoresComponent } from './pages/proveedores/proveedores.component';
+import { NuevoProveedorComponent } from './pages/nuevo-proveedor/nuevo-proveedor.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { ProveedoresComponent } from './pages/proveedores/proveedores.component'
     AppComponent,
     ProveedoresComponent,
     NavbarComponent,
-    MenuComponent
+    MenuComponent,
+    NuevoProveedorComponent
   ],
   imports: [
     BrowserModule,

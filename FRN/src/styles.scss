@@ -51,7 +51,98 @@ h2 {
 }
 
 // Tablas
+.table_length_info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
+    div {
+        display: flex;
+        align-items: center;
+        padding: 0 !important;
+        & > div{
+            margin-right: 50px !important;
+        }
+    }
+    
+}
+
+.dataTables_wrapper {
+    overflow-x: auto;
+
+    table.dataTable {
+        width: 100% !important;
+    }
+    table.dataTable thead th,
+    table.dataTable thead td {
+        border: none !important;
+        text-align: start;
+        padding: 5px;
+        color: #0f1535;
+    }
+
+    table.dataTable tbody th,
+    table.dataTable tbody td {
+        padding: 14px 10px !important;
+        border-top: 1px solid #e7eef8 !important;
+        font-weight: 300;
+    }
+
+    table.dataTable tfoot {
+        background-color: rgb(248, 248, 248);
+
+        th {
+            padding: 0 !important;
+            height: 50px;
+            border: none;
+
+            input {
+                width: calc(100% - 4px) !important;
+                height: 100% !important;
+                border: none !important;
+                text-transform: uppercase !important;
+                padding-left: 10px;
+                background-color: transparent;
+                font-weight: 700;
+                color: #1a265f;
+                &::placeholder {
+                    font-weight: normal;
+                }
+            }
+        }
+    }
+
+    .dataTables_paginate {
+        .paginate_button {
+            border: 1px solid silver !important;
+            margin-left: -1px !important;
+            font-size: 15px;
+            font-weight: 700;
+
+            &:hover {
+                background: #192354 !important;
+            }
+
+            &.current,
+            &.current:hover {
+                background: #e7eef8 !important;
+            }
+        }
+    }
+    .dataTables_info, .dataTables_length {
+        font-size: 15px !important;
+        font-weight: 700;
+        color: #0f1535 !important;
+    }
+
+    .dataTables_length select {
+        font-size: 15px !important;
+        font-weight: 700;
+        color: #0f1535 !important;
+        margin: 0 5px;
+        border-radius: 2px;
+    }
+}
 
 // Helpers
 .pl-1 {

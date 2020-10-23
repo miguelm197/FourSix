@@ -7,14 +7,27 @@
 
 <div class="barraInferior">
     <ul class="subMenu horizontal">
-        <li class="item activo animate__animated animate__slideInDown ">
+
+        <!-- animate__slideInDown -->
+        <li *ngFor="let boton of Botones" class="item animate__animated" [ngClass]="{'activo': boton.Activo}" [routerLink]="boton.Url">
+            <fa-icon [icon]="boton.Icono" class="mr-2"></fa-icon>
+            <span>{{boton.Texto}}</span>
+        </li>
+
+
+        
+<!--         
+        <li class="item activo animate__animated animate__slideInDown">
             <fa-icon [icon]="faList" class="mr-2"></fa-icon>
             <span>Listas</span>
         </li>
+
+
+
+
         <li class="item animate__animated animate__slideInDown animate__delay-01s">
-            <!-- <i class="far fa-plus-square mr-2"></i> -->
             <fa-icon [icon]="faPlusSquare" class="mr-2"></fa-icon>
             <span>Nuevo</span>
-        </li>
+        </li> -->
     </ul>
 </div>

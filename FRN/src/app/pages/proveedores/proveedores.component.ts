@@ -4,19 +4,6 @@ import { UtilsService } from './../../utils/utils.service';
 
 import { DataTableDirective } from 'angular-datatables';
 
-class Person {
-  id: number;
-  firstName: string;
-  lastName: string;
-}
-
-class DataTablesResponse {
-  data: any[];
-  draw: number;
-  recordsFiltered: number;
-  recordsTotal: number;
-}
-
 @Component({
   selector: 'app-proveedores',
   templateUrl: './proveedores.component.html',
@@ -27,7 +14,6 @@ export class ProveedoresComponent implements OnInit, AfterViewInit {
   datatableElement: DataTableDirective;
 
   dtOptions: DataTables.Settings = {};
-  persons: Person[];
 
   constructor(private http: HttpClient, private utils: UtilsService) {}
 
@@ -37,6 +23,7 @@ export class ProveedoresComponent implements OnInit, AfterViewInit {
     this.dtOptions = {
       pageLength: 10,
       serverSide: true,
+      autoWidth: false,
       processing: true,
       ajax: {
         url: 'http://MARK-XLIII:3000/ObtenerProveedores',
@@ -55,7 +42,8 @@ export class ProveedoresComponent implements OnInit, AfterViewInit {
         { data: 'RUT', name: 'RUT' },
         { data: 'RazonSocial', name: 'RAZON SOCIAL' },
       ],
-      // dom: 'r<t>i<lp>',
+      dom: 't<"table_length_info""<il>p>',
+      order: [[1, 'asc']],
       language: this.utils.lenguajeDT(),
     };
   }
