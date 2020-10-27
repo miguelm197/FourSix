@@ -20,8 +20,8 @@ ul {
 
 .routerOutlet {
     position: absolute;
-    width: calc(100% - 290px);
-    height: calc(100% - 190px);
+    width: calc(100% - 230px);
+    height: calc(100% - 150px);
     top: 130px;
     right: 0;
     padding: 30px;
@@ -71,7 +71,7 @@ h2 {
     overflow-x: auto;
 
     table.dataTable {
-        width: 100% !important;
+        width: calc(100% - 13px) !important;
     }
     table.dataTable thead th,
     table.dataTable thead td {

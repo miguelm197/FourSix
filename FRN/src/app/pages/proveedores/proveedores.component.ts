@@ -23,7 +23,6 @@ export class ProveedoresComponent implements OnInit, AfterViewInit {
     this.dtOptions = {
       pageLength: 10,
       serverSide: true,
-      autoWidth: false,
       processing: true,
       ajax: {
         url: 'http://MARK-XLIII:3000/ObtenerProveedores',
