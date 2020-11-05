@@ -1,6 +1,6 @@
 const { Generico, PagedResult, PagedQuery } = require("../Entities/Genericos");
 const { Proveedor } = require("../Entities/Proveedor");
-const Proveedores_DAL  = require("../DataAccess/DAL_Proveedores");
+const Proveedores_DAL = require("../DataAccess/DAL_Proveedores");
 const { ObtenerProveedores_Filter } = require("../DataAccess/Filters");
 const { ProveedoresResult } = require("../Entities/Results/ProveedoresResult");
 
@@ -48,7 +48,7 @@ class Proveedores_Service {
             if (data.Error) {
                retorno.Ok = false;
                retorno.Status = 500;
-               retorno.Message = "Ha ocurrido un error al impactar en la BD";
+               retorno.Message = "Ha ocurrido un error al impactar";
 
                retorno.InfoExtra = data.Data;
 
@@ -60,6 +60,7 @@ class Proveedores_Service {
                   }
                }
             } else {
+               console.log(proveedor);
                retorno.Message = "Proveedor '" + proveedor.Nombre + "' creado correctamente";
                retorno.Extra = proveedor;
             }

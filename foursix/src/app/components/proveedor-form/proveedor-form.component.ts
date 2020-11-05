@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -7,6 +7,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./proveedor-form.component.scss'],
 })
 export class ProveedorFormComponent implements OnInit {
+  @Output() onSubmit = new EventEmitter<FormGroup>();
+
   constructor() {}
 
   proveedorForm = new FormGroup({
@@ -38,7 +40,7 @@ export class ProveedorFormComponent implements OnInit {
     this.setRutRazonSocialValidator();
   }
 
-  onSubmit() {
-    console.log(this.proveedorForm);
+  enviar() {
+    this.onSubmit.emit(this.proveedorForm);
   }
 }

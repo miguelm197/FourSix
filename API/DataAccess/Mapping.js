@@ -25,7 +25,6 @@ class BD_Clientes {
    Direccion = null;
    Mail = null;
 
-
    constructor(cliente) {
       Utils.setDefaultDataClass(this, cliente);
 
@@ -34,7 +33,6 @@ class BD_Clientes {
       if (this.Mail) this.Mail = "'" + this.Mail + "'";
    }
 }
-
 
 module.exports = {
    BD_Proveedores,

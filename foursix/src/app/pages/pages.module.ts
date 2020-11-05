@@ -37,7 +37,6 @@ import { ProveedorFormComponent } from './../components/proveedor-form/proveedor
   imports: [
     CommonModule,
     FormsModule,
-    HttpClientModule,
     ReactiveFormsModule,
     PagesRoutingModule,
     DataTablesModule,

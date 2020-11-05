@@ -1,21 +1,15 @@
 import { UtilsService } from './../../../utils/utils.service';
-import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  AfterViewInit,
+  ViewChild,
+  Output,
+  EventEmitter,
+} from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 
 import { DataTableDirective } from 'angular-datatables';
-
-interface TreeNode<T> {
-  data: T;
-  children?: TreeNode<T>[];
-  expanded?: boolean;
-}
-
-interface FSEntry {
-  name: string;
-  size: string;
-  kind: string;
-  items?: number;
-}
 
 @Component({
   selector: 'app-lista-proveedor',

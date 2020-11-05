@@ -45,9 +45,8 @@ const InsertarProveedor = async (proveedor) => {
                      ([Codigo], [Nombre], [Telefono], [Direccion], [RUT], [RazonSocial])
                    VALUES
                      (${proveedorBD.Codigo}, ${proveedorBD.Nombre}, ${proveedorBD.Telefono}
-                     ,${proveedorBD.Direccion}, ${proveedorBD.Rut}, ${proveedorBD.RazonSocial})
+                     ,${proveedorBD.Direccion}, ${proveedorBD.RUT}, ${proveedorBD.RazonSocial})
    `;
-
    res = await DBACCESS(queryDB);
 
    return res;
