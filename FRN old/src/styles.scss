@@ -60,11 +60,10 @@ h2 {
         display: flex;
         align-items: center;
         padding: 0 !important;
-        & > div{
+        & > div {
             margin-right: 50px !important;
         }
     }
-    
 }
 
 .dataTables_wrapper {
@@ -129,7 +128,8 @@ h2 {
             }
         }
     }
-    .dataTables_info, .dataTables_length {
+    .dataTables_info,
+    .dataTables_length {
         font-size: 15px !important;
         font-weight: 700;
         color: #0f1535 !important;
@@ -141,6 +141,38 @@ h2 {
         color: #0f1535 !important;
         margin: 0 5px;
         border-radius: 2px;
+    }
+}
+
+// Formularios
+
+.campo {
+    label {
+        margin-bottom: 10px;
+        display: inline-block;
+        font-size: 15px;
+        font-weight: 700;
+        color: #1a265f;
+    }
+
+    .input-group {
+        background-color: white;
+        height: 45px;
+
+        .control {
+            border-radius: 2px;
+            width: 100%;
+            padding-left: 10px;
+            border: none;
+            background-color: transparent;
+            height: 100%;
+            font-size: 16px;
+            border: 1px solid #1a265f;
+
+            &:focus {
+                box-shadow: 0px 0px 0px 5px #1629882f;
+            }
+        }
     }
 }
 

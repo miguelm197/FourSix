@@ -1,0 +1,117 @@
+/* You can add global styles to this file, and also import other style files */
+
+// Tablas
+.table_length_info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    div {
+        display: flex;
+        align-items: center;
+        padding: 0 !important;
+        & > div {
+            margin-right: 50px !important;
+        }
+    }
+    label {
+        margin-bottom: 0;
+    }
+}
+
+.dataTables_wrapper {
+    overflow-x: auto;
+
+    table.dataTable {
+        width: 100% !important;
+    }
+    table.dataTable thead th {
+        padding: 10px !important;
+        padding-bottom: 18px !important;
+        border-bottom: 1px solid transparent !important;
+
+        table.dataTable thead td {
+            border: none !important;
+            text-align: start;
+            color: #0f1535;
+        }
+    }
+
+    table.dataTable tbody th,
+    table.dataTable tbody td {
+        padding: 14px 10px !important;
+        border-top: 1px solid #e7eef8 !important;
+        font-weight: 300;
+    }
+
+    table.dataTable tfoot {
+        background-color: rgb(248, 248, 248);
+
+        th {
+            padding: 0 !important;
+            height: 40px;
+            border: none;
+
+            input {
+                width: calc(100% - 24px) !important;
+                height: 100% !important;
+                border: none !important;
+                text-transform: uppercase !important;
+                padding-left: 10px;
+                background-color: transparent;
+                font-weight: 700;
+                color: #1a265f;
+
+                &:focus {
+                    // border: px solid red !important;
+                    border-radius: 0 !important;
+                }
+                &::placeholder {
+                    font-weight: normal;
+                    font-size: 12px;
+                }
+            }
+        }
+    }
+
+    .dataTables_paginate {
+        .paginate_button {
+            border: 1px solid #edf1f7 !important;
+            margin-left: -1px !important;
+            font-size: 14px;
+            // font-weight: 700;
+            color: #3366ff !important;
+            border-radius: 0 !important;
+
+            &:hover {
+                background: transparent !important;
+                color: #3366ff !important;
+            }
+            &:active {
+                border: 1px solid #edf1f7 !important;
+                background: none !important;
+                box-shadow: none !important;
+            }
+
+            &.current,
+            &.current:hover {
+                background: #3366ff !important;
+                color: white !important;
+            }
+        }
+    }
+    .dataTables_info,
+    .dataTables_length {
+        font-size: 15px !important;
+        font-weight: 700;
+        color: #0f1535 !important;
+    }
+
+    .dataTables_length select {
+        font-size: 15px !important;
+        font-weight: 700;
+        color: #0f1535 !important;
+        margin: 0 5px;
+        border-radius: 2px;
+    }
+}

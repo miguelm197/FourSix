@@ -1,0 +1,130 @@
+<form [formGroup]="proveedorForm" (ngSubmit)="onSubmit()">
+
+    <!-- CORREO -->
+
+
+    <br>
+
+    <!-- Codigo -->
+    <div class="form-control-group mb-3 row">
+        <label class="label col-sm-3 col-form-label text-left">Código proveedor: <span style="color: red;"> *</span></label>
+
+        <div class="col-sm-9">
+            <nb-form-field>
+                <nb-icon nbPrefix icon="bookmark-outline" pack="eva"></nb-icon>
+
+                <input nbInput placeholder="Código del proveedor" fullWidth autofocus formControlName="codigo"
+                    [status]="proveedorForm.controls.codigo.dirty ? (proveedorForm.controls.codigo.invalid  ? 'danger' : 'success') : 'basic'">
+            </nb-form-field>
+
+            <ng-container *ngIf="proveedorForm.controls.codigo.invalid && proveedorForm.controls.codigo.touched">
+                <p class="caption status-danger mt-2" *ngIf="proveedorForm.controls.codigo.errors?.required">
+                    El código es requerido!
+                </p>
+            </ng-container>
+        </div>
+    </div>
+
+
+    <!-- Nombre -->
+    <div class="form-control-group mb-5 row">
+        <label class="label col-sm-3 col-form-label text-left">Nombre proveedor: <span style="color: red;"> *</span></label>
+
+        <div class="col-sm-9">
+            <nb-form-field>
+                <nb-icon nbPrefix icon="person-outline" pack="eva"></nb-icon>
+
+                <input nbInput placeholder="Nombre del proveedor" fullWidth autofocus formControlName="nombre"
+                    [status]="proveedorForm.controls.nombre.dirty ? (proveedorForm.controls.nombre.invalid  ? 'danger' : 'success') : 'basic'">
+            </nb-form-field>
+
+            <ng-container *ngIf="proveedorForm.controls.nombre.invalid && proveedorForm.controls.nombre.touched">
+                <p class="caption status-danger mt-2" *ngIf="proveedorForm.controls.nombre.errors?.required">
+                    El nombre del proveedor es requerido!
+                </p>
+            </ng-container>
+        </div>
+    </div>
+
+
+    <!-- Teléfono -->
+    <div class="form-control-group mb-3 row">
+        <label class="label col-sm-3 col-form-label text-left">Teléfono: </label>
+
+        <div class="col-sm-9">
+            <nb-form-field>
+                <nb-icon nbPrefix icon="phone-outline" pack="eva"></nb-icon>
+
+                <input nbInput placeholder="Teléfono del proveedor" fullWidth autofocus formControlName="telefono"
+                    [status]="proveedorForm.controls.telefono.dirty ? (proveedorForm.controls.telefono.invalid  ? 'danger' : 'success') : 'basic'">
+            </nb-form-field>
+
+            <ng-container *ngIf="proveedorForm.controls.telefono.invalid && proveedorForm.controls.telefono.touched">
+                <p class="caption status-danger mt-2" *ngIf="proveedorForm.controls.telefono.errors?.pattern">
+                    El teléfono debe ser real!
+                </p>
+            </ng-container>
+        </div>
+    </div>
+
+
+    <!-- Dirección -->
+    <div class="form-control-group mb-3 row">
+        <label class="label col-sm-3 col-form-label text-left">Dirección: </label>
+
+        <div class="col-sm-9">
+            <nb-form-field>
+                <nb-icon nbPrefix icon="pin-outline" pack="eva"></nb-icon>
+
+                <input nbInput placeholder="Dirección del proveedor" fullWidth autofocus formControlName="direccion"
+                    [status]="proveedorForm.controls.direccion.dirty ? (proveedorForm.controls.direccion.invalid  ? 'danger' : 'success') : 'basic'">
+            </nb-form-field>
+        </div>
+    </div>
+
+
+    <!-- Rut -->
+    <div class="form-control-group mb-3 row">
+        <label class="label col-sm-3 col-form-label text-left">RUT: </label>
+
+        <div class="col-sm-9">
+            <nb-form-field>
+                <nb-icon nbPrefix icon="briefcase-outline" pack="eva"></nb-icon>
+
+                <input nbInput placeholder="Rut del proveedor" fullWidth autofocus formControlName="rut"
+                    [status]="proveedorForm.controls.rut.dirty ? (proveedorForm.controls.rut.invalid  ? 'danger' : 'success') : 'basic'">
+            </nb-form-field>
+
+            <ng-container *ngIf="proveedorForm.controls.rut.invalid && proveedorForm.controls.rut.touched">
+                <p class="caption status-danger mt-2" *ngIf="proveedorForm.controls.rut.errors?.required">
+                    El RUT es requerido si hay Razón Social!
+                </p>
+            </ng-container>
+        </div>
+    </div>
+
+
+    <!-- Rut -->
+    <div class="form-control-group mb-3 row">
+        <label class="label col-sm-3 col-form-label text-left">Razón social: </label>
+
+        <div class="col-sm-9">
+            <nb-form-field>
+                <nb-icon nbPrefix icon="briefcase-outline" pack="eva"></nb-icon>
+
+                <input nbInput placeholder="Razón social del proveedor" fullWidth autofocus formControlName="razonSocial"
+                    [status]="proveedorForm.controls.razonSocial.dirty ? (proveedorForm.controls.razonSocial.invalid  ? 'danger' : 'success') : 'basic'">
+            </nb-form-field>
+
+            <ng-container *ngIf="proveedorForm.controls.razonSocial.invalid && proveedorForm.controls.razonSocial.touched">
+                <p class="caption status-danger mt-2" *ngIf="proveedorForm.controls.razonSocial.errors?.required">
+                    El RUT es requerido si hay Razón Social!
+                </p>
+            </ng-container>
+        </div>
+    </div>
+
+    <br><br><br>
+
+    <button nbButton status="success" [disabled]="!proveedorForm.valid"> INGRESAR PROVEEDOR </button>
+</form>

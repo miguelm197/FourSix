@@ -1,0 +1,35 @@
+<nb-card>
+    <nb-card-header>
+        Lista de proveedores
+    </nb-card-header>
+
+    <nb-card-body>
+
+        <table datatable [dtOptions]="dtOptions" class="row-border hover">
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Nombre</th>
+                    <th>Teléfono</th>
+                    <th>Dirección</th>
+                    <th>RUT</th>
+                    <th>Razon social</th>
+                </tr>
+            </thead>
+
+            <tfoot style="display: table-header-group" class="filtros">
+                <tr>
+                    <th><input class="form-control" type="search" placeholder="BUSCAR POR CODIGO ..." /></th>
+                    <th><input class="form-control" type="search" placeholder="BUSCAR POR NOMBRE ..." /></th>
+                    <th><input class="form-control" type="search" placeholder="BUSCAR POR TELEFONO ..." /></th>
+                    <th><input class="form-control" type="search" placeholder="BUSCAR POR DIRECCION ..." /></th>
+                    <th><input class="form-control" type="search" placeholder="BUSCAR POR RUT ..." /></th>
+                    <th><input class="form-control" type="search" placeholder="BUSCAR POR RAZON SOCIAL ..." /></th>
+                </tr>
+            </tfoot>
+
+            <tbody></tbody>
+        </table>
+
+    </nb-card-body>
+</nb-card>
