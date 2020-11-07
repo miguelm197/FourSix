@@ -5,7 +5,7 @@ class Proveedor {
    Nombre = null;
    Telefono = null;
    Direccion = null;
-   Rut = null;
+   RUT = null;
    RazonSocial = null;
 
    constructor(proveedor) {
@@ -16,4 +16,3 @@ class Proveedor {
 module.exports = {
    Proveedor,
 };
-

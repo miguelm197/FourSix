@@ -4,7 +4,12 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NbThemeModule, NbSidebarModule, NbMenuModule } from '@nebular/theme';
+import {
+  NbThemeModule,
+  NbSidebarModule,
+  NbMenuModule,
+  NbToastrModule,
+} from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -18,6 +23,7 @@ import { HttpClientModule } from '@angular/common/http';
     NbThemeModule.forRoot({ name: 'corporate' }),
     NbSidebarModule.forRoot(),
     NbMenuModule.forRoot(),
+    NbToastrModule.forRoot(),
     NbEvaIconsModule,
   ],
   providers: [],

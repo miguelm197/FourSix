@@ -3,7 +3,7 @@ export interface ProveedorInterface {
   Nombre: string;
   Telefono?: string;
   Direccion?: string;
-  Rut?: string;
+  Rut?: number;
   RazonSocial?: string;
   Activo?: string;
 }

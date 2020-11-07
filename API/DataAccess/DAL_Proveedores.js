@@ -34,7 +34,6 @@ const ObtenerProveedores = async (paged_query, filtros) => {
 
 const InsertarProveedor = async (proveedor) => {
    let res = new DataBaseResult();
-
    let proveedorBD = new BD_Proveedores(proveedor);
 
    // Validar datos
@@ -52,4 +51,30 @@ const InsertarProveedor = async (proveedor) => {
    return res;
 };
 
-module.exports = { ObtenerProveedores, InsertarProveedor };
+const EditarProveedor = async (id, proveedor) => {
+   let res = new DataBaseResult();
+
+   let proveedorBD = new BD_Proveedores(proveedor);
+
+   // Validar datos
+   if (!proveedorBD.Codigo) return res.set(true, "Código requerido");
+   if (!proveedorBD.Nombre) return res.set(true, "Nombre requerido");
+
+   let queryDB = ` UPDATE [dbo].[Proveedores] SET  
+                     [Codigo] = ${proveedorBD.Codigo},
+                     [Nombre] = ${proveedorBD.Nombre},
+                     [Telefono] = ${proveedorBD.Telefono},
+                     [Direccion] = ${proveedorBD.Direccion},
+                     [RUT] = ${proveedorBD.RUT},
+                     [RazonSocial] = ${proveedorBD.RazonSocial},
+                     [Activo] = ${proveedorBD.Activo}
+                  WHERE [Id] = ${id} 
+   `;
+
+   console.log(queryDB);
+   res = await DBACCESS(queryDB);
+
+   return res;
+};
+
+module.exports = { ObtenerProveedores, InsertarProveedor, EditarProveedor };

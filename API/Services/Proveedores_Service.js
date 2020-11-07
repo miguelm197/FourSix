@@ -38,36 +38,61 @@ class Proveedores_Service {
       return pagedResult;
    }
 
-   altaProveedor(proveedor) {
-      return new Promise((resolve) => {
-         let retorno = new Generico();
+   async altaProveedor(proveedor) {
+      let retorno = new Generico();
+      proveedor = new Proveedor(proveedor);
 
-         Proveedores_DAL.InsertarProveedor(proveedor).then((data) => {
-            proveedor = new Proveedor(proveedor);
+      let data = await Proveedores_DAL.InsertarProveedor(proveedor);
 
-            if (data.Error) {
-               retorno.Ok = false;
-               retorno.Status = 500;
-               retorno.Message = "Ha ocurrido un error al impactar";
+      if (data.Error) {
+         retorno.Ok = false;
+         retorno.Status = 500;
+         retorno.Message = "Ha ocurrido un error al impactar";
 
-               retorno.InfoExtra = data.Data;
+         retorno.InfoExtra = data.Data;
 
-               if (data.ErrorDetail) {
-                  let errorBD_message = data.ErrorDetail.message;
+         if (data.ErrorDetail) {
+            let errorBD_message = data.ErrorDetail.message;
 
-                  if (errorBD_message.indexOf("UC_Codigo")) {
-                     retorno.InfoExtra = "Ya existe un proveedor con el código: " + proveedor.Codigo;
-                  }
-               }
-            } else {
-               console.log(proveedor);
-               retorno.Message = "Proveedor '" + proveedor.Nombre + "' creado correctamente";
-               retorno.Extra = proveedor;
+            if (errorBD_message.indexOf("UC_Codigo")) {
+               retorno.InfoExtra = "Ya existe un proveedor con el código: " + proveedor.Codigo;
             }
+         }
+      } else {
+         retorno.Message = "Proveedor '" + proveedor.Nombre + "' creado correctamente";
+         retorno.Extra = proveedor;
+      }
 
-            resolve(retorno);
-         });
-      });
+      return retorno;
+   }
+
+   async editarProveedor(id, proveedor) {
+      let retorno = new Generico();
+      proveedor = new Proveedor(proveedor);
+
+      let data = await Proveedores_DAL.EditarProveedor(id, proveedor);
+
+      if (data.Error) {
+         retorno.Ok = false;
+         retorno.Status = 500;
+         retorno.Message = "Ha ocurrido un error al impactar";
+
+         retorno.InfoExtra = data.Data;
+         // console.log("INFO EXTRA", data);
+         if (data.ErrorDetail) {
+            let errorBD_message = data.ErrorDetail.message;
+
+            if (errorBD_message.indexOf("UC_Codigo")) {
+               retorno.InfoExtra = "Ya existe un proveedor con el código: " + proveedor.Codigo;
+            }
+         }
+      } else {
+         console.log(proveedor);
+         retorno.Message = "Proveedor '" + proveedor.Nombre + "' editado correctamente";
+         retorno.Extra = proveedor;
+      }
+
+      return retorno;
    }
 }
 

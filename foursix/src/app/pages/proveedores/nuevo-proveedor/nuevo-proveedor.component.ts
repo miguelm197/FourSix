@@ -1,8 +1,11 @@
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormGroup } from '@angular/forms';
+import { NbToastrService } from '@nebular/theme';
 import { respApiInterface } from './../../../interfaces/genericos.interface';
 import { ProveedorInterface } from './../../../interfaces/proveedor..interface';
-import { FormGroup } from '@angular/forms';
 import { FourSixService } from '../../../services/foursix.service';
-import { Component, OnInit } from '@angular/core';
+import { ProveedorFormComponent } from 'src/app/components/proveedor-form/proveedor-form.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nuevo-proveedor',
@@ -10,28 +13,45 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./nuevo-proveedor.component.scss'],
 })
 export class NuevoProveedorComponent implements OnInit {
-  constructor(private foursixApi: FourSixService) {}
+  // Establece comunicación con los métodos y propiedades del componente hijo
+  @ViewChild(ProveedorFormComponent) compProveedor: ProveedorFormComponent;
 
-  proveedorForm: FormGroup;
+  constructor(
+    private foursixApi: FourSixService,
+    private toastrService: NbToastrService,
+    private router: Router
+  ) {}
 
-  onSubmit(evt) {
-    this.proveedorForm = evt;
-    console.log(this.proveedorForm);
+  formulario: FormGroup;
 
-    let proveedorObj: ProveedorInterface = {
-      Codigo: this.proveedorForm.controls.codigo.value,
-      Nombre: this.proveedorForm.controls.nombre.value,
-    };
+  onSubmit(proveedor) {
+    console.log('lo que trae', proveedor);
 
-    this.foursixApi
-      .altaProveedor(proveedorObj)
-      .subscribe((res: respApiInterface) => {
+    // Realiza el POSTEO del proveedor a la API
+    this.foursixApi.altaProveedor(proveedor.objeto).subscribe(
+      (res: respApiInterface) => {
         console.log('RESP API:', res);
 
         if (res.Ok) {
-          alert('TODO OK');
+          this.toastrService.show(
+            `Se creó el proveedor ${res.Extra['Nombre']} correctamente`,
+            'Proveedores',
+            { status: 'success' }
+          );
+
+          this.compProveedor.limpiar();
+          this.router.navigate(['lista']);
+        } else {
+          // ERROR
+          this.toastrService.show(res.InfoExtra, 'Proveedores', {
+            status: 'danger',
+          });
         }
-      });
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 
   ngOnInit(): void {

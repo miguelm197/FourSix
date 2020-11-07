@@ -66,4 +66,20 @@ let AltaProveedor = async (req, res) => {
    res.json(retorno);
 };
 
-module.exports = { AltaProveedor, ObtenerProveedores };
+let EditarProveedor = async (req, res) => {
+   console.log("PUT - Editar Proveedor /EditarProveedor");
+
+   let params = req.params;
+   let body = req.body;
+   let retorno = new Generico();
+
+   const srv = new Proveedores_Service();
+   retorno = await srv.editarProveedor(params.id, body);
+
+   console.log(retorno.Message);
+   console.log(retorno.InfoExtra);
+
+   res.json(retorno);
+};
+
+module.exports = { AltaProveedor, ObtenerProveedores, EditarProveedor };

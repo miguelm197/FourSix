@@ -1,3 +1,4 @@
+import { ProveedorInterface } from './../../interfaces/proveedor..interface';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
@@ -7,7 +8,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./proveedor-form.component.scss'],
 })
 export class ProveedorFormComponent implements OnInit {
-  @Output() onSubmit = new EventEmitter<FormGroup>();
+  @Output() onSubmit = new EventEmitter<any>();
 
   constructor() {}
 
@@ -16,10 +17,19 @@ export class ProveedorFormComponent implements OnInit {
     nombre: new FormControl('', Validators.compose([Validators.required])),
     telefono: new FormControl(
       '',
-      Validators.compose([Validators.pattern('[0-9]+')])
+      Validators.compose([
+        Validators.pattern('[0-9]+'),
+        Validators.minLength(8),
+      ])
     ),
     direccion: new FormControl('', null),
-    rut: new FormControl('', null),
+    rut: new FormControl(
+      '',
+      Validators.compose([
+        Validators.pattern('[0-9]+'),
+        Validators.minLength(12),
+      ])
+    ),
     razonSocial: new FormControl('', null),
     activo: new FormControl(true, Validators.compose([Validators.required])),
   });
@@ -41,6 +51,20 @@ export class ProveedorFormComponent implements OnInit {
   }
 
   enviar() {
-    this.onSubmit.emit(this.proveedorForm);
+    let proveedor: ProveedorInterface = {
+      Codigo: this.proveedorForm.controls.codigo.value,
+      Nombre: this.proveedorForm.controls.nombre.value,
+      Telefono: this.proveedorForm.controls.telefono.value,
+      Direccion: this.proveedorForm.controls.direccion.value,
+      Rut: parseInt(this.proveedorForm.controls.rut.value),
+      RazonSocial: this.proveedorForm.controls.razonSocial.value,
+      Activo: this.proveedorForm.controls.activo.value,
+    };
+
+    this.onSubmit.emit({ formulario: this.proveedorForm, objeto: proveedor });
+  }
+
+  limpiar() {
+    this.proveedorForm.reset();
   }
 }
