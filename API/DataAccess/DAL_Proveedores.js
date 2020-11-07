@@ -9,9 +9,9 @@ const ObtenerProveedores = async (paged_query, filtros) => {
    let query = new PagedQuery(paged_query);
    let wheres = new ObtenerProveedores_Filter(filtros);
    let order = new ObtenerProveedores_Order(query.SortOptions);
-   console.log("ORDER", order);
 
-   console.log("QUERYYYY", query);
+   // console.log("ORDER", order);
+   // console.log("QUERYYYY", query);
 
    let queryDB = ` SELECT * FROM PROVEEDORES 
                    WHERE activo = ${wheres.Activo}`;

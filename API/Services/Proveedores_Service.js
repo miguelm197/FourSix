@@ -20,6 +20,7 @@ class Proveedores_Service {
       allProveedores.Data.forEach((prov) => {
          let proveedor = new ProveedoresResult();
 
+         proveedor.Id = prov.Id;
          proveedor.Codigo = prov.Codigo;
          proveedor.Nombre = prov.Nombre;
          proveedor.Direccion = prov.Direccion;

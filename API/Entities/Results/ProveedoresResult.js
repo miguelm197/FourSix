@@ -1,10 +1,11 @@
 class ProveedoresResult {
-    Codigo;
-    Nombre;
-    Telefono;
-    Direccion;
-    RUT;
-    RazonSocial;
+   Id;
+   Codigo;
+   Nombre;
+   Telefono;
+   Direccion;
+   RUT;
+   RazonSocial;
 
    constructor() {}
 }

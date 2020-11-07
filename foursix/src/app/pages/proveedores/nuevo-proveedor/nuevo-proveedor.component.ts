@@ -25,8 +25,6 @@ export class NuevoProveedorComponent implements OnInit {
   formulario: FormGroup;
 
   onSubmit(proveedor) {
-    console.log('lo que trae', proveedor);
-
     // Realiza el POSTEO del proveedor a la API
     this.foursixApi.altaProveedor(proveedor.objeto).subscribe(
       (res: respApiInterface) => {

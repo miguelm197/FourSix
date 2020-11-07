@@ -24,6 +24,7 @@ import { HttpClientModule } from '@angular/common/http';
     NbSidebarModule.forRoot(),
     NbMenuModule.forRoot(),
     NbToastrModule.forRoot(),
+    NbMenuModule.forRoot(),
     NbEvaIconsModule,
   ],
   providers: [],

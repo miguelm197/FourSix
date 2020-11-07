@@ -9,6 +9,7 @@ import {
   NbButtonModule,
   NbCardModule,
   NbCheckboxModule,
+  NbContextMenuModule,
   NbDatepickerModule,
   NbFormFieldModule,
   NbIconModule,
@@ -18,7 +19,6 @@ import {
   NbSelectModule,
   NbSidebarModule,
   NbStepperModule,
-  NbTreeGridModule,
 } from '@nebular/theme';
 import { DataTablesModule } from 'angular-datatables';
 
@@ -54,7 +54,7 @@ import { ProveedorFormComponent } from './../components/proveedor-form/proveedor
     NbCheckboxModule,
     NbAutocompleteModule,
     NbMenuModule,
-    NbTreeGridModule,
+    NbContextMenuModule,
   ],
 })
 export class PagesModule {}

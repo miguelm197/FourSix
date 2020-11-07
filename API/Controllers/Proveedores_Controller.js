@@ -33,6 +33,7 @@ let ObtenerProveedores = async (req, res) => {
    resp.Datos.forEach((proveedor) => {
       let prov = new ProveedoresResult();
 
+      prov.Id = proveedor.Id;
       prov.Codigo = proveedor.Codigo;
       prov.Nombre = proveedor.Nombre;
       prov.Direccion = proveedor.Direccion;

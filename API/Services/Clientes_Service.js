@@ -3,7 +3,6 @@ const { Cliente } = require("../Entities/Cliente");
 const Clientes_DAL = require("../DataAccess/DAL_Clientes");
 
 class Clientes_Service {
-
    obtenerClientes() {
       return new Promise((resolve, reject) => {
          let retorno = new Generico();
@@ -17,6 +16,7 @@ class Clientes_Service {
                retorno.Message = "Lista de clientes activos cargados en el sistema.";
                retorno.InfoExtra = "Catidad de clientes activos registrados " + data.Cant;
                retorno.Data = data.Data;
+               console.log(data.Data);
                retorno.Extra = {
                   Cant: data.Cant,
                };
