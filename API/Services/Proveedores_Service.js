@@ -39,6 +39,41 @@ class Proveedores_Service {
       return pagedResult;
    }
 
+   async obtenerProveedorPorId(idProveedor) {
+      let retorno = new Generico();
+
+      let resBD = await Proveedores_DAL.ObtenerProveedorPorId(idProveedor);
+
+      if (resBD.Error) {
+         return retorno.set(false, 500, resBD.Message);
+      }
+
+      if (resBD.Data.length == 0) {
+         return retorno.set(false, 400, "No se encontró un proveedor con id " + idProveedor);
+      }
+
+      let proveedoresRetorno = [];
+
+      resBD.Data.forEach((prov) => {
+         let proveedor = new ProveedoresResult();
+
+         proveedor.Id = prov.Id;
+         proveedor.Codigo = prov.Codigo;
+         proveedor.Nombre = prov.Nombre;
+         proveedor.Direccion = prov.Direccion;
+         proveedor.Telefono = prov.Telefono;
+         proveedor.Rut = prov.RUT;
+         proveedor.RazonSocial = prov.RazonSocial;
+         proveedor.Activo = prov.Activo;
+
+         proveedoresRetorno.push(proveedor);
+      });
+
+      retorno.Data = proveedoresRetorno;
+
+      return retorno;
+   }
+
    async altaProveedor(proveedor) {
       let retorno = new Generico();
       proveedor = new Proveedor(proveedor);

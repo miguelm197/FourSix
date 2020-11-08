@@ -1,12 +1,14 @@
+import { respApiInterface } from './../../../interfaces/genericos.interface';
+import { FourSixService } from './../../../services/foursix.service';
 import { environment } from './../../../../environments/environment.prod';
 import { UtilsService } from './../../../utils/utils.service';
-import { map, filter } from 'rxjs/operators';
 
 import {
   Component,
   OnInit,
   AfterViewInit,
   ViewChild,
+  OnDestroy,
   Renderer2,
   TemplateRef,
 } from '@angular/core';
@@ -19,7 +21,8 @@ import { NbDialogService, NbMenuService } from '@nebular/theme';
   templateUrl: './lista-proveedor.component.html',
   styleUrls: ['./lista-proveedor.component.scss'],
 })
-export class ListaProveedorComponent implements OnInit, AfterViewInit {
+export class ListaProveedorComponent
+  implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild(DataTableDirective, { static: false })
   datatableElement: DataTableDirective;
   dtOptions: DataTables.Settings = {};
@@ -28,12 +31,15 @@ export class ListaProveedorComponent implements OnInit, AfterViewInit {
     private dialogService: NbDialogService,
     private nbMenuService: NbMenuService,
     private renderer: Renderer2,
+    private foursix: FourSixService,
     private utils: UtilsService
   ) {}
+
   @ViewChild('editProveedorTpl')
   private dialogEditProv: TemplateRef<any>;
 
   menuFila = [{ title: 'Profile' }, { title: 'Logout' }];
+  listenerFn: () => void;
 
   ngOnInit(): void {
     // Declaración de la tabla
@@ -85,21 +91,13 @@ export class ListaProveedorComponent implements OnInit, AfterViewInit {
       order: [[1, 'asc']],
       language: this.utils.lenguajeDT(),
     };
-
-    this.nbMenuService
-      .onItemClick()
-      .pipe(
-        filter(({ tag }) => tag === 'my-context-menu'),
-        map(({ item: { title } }) => title)
-      )
-      .subscribe((title) => console.log('title ' + title));
   }
 
   ngAfterViewInit(): void {
     this.utils.busquedaDataTable(this.datatableElement);
 
-    // Escuchar la selección del item en el menú de la fila
-    this.renderer.listen('document', 'click', (event) => {
+    // Escucha el click en el menú contextual de las filas
+    this.listenerFn = this.renderer.listen(document, 'click', (event) => {
       let item = event.explicitOriginalTarget.attributes['data-item'];
       let provId = event.explicitOriginalTarget.attributes['data-provId'];
 
@@ -114,14 +112,30 @@ export class ListaProveedorComponent implements OnInit, AfterViewInit {
     });
   }
 
+  ngOnDestroy(): void {
+    // Destruye el listener del menú contextual de las filas
+    if (this.listenerFn) {
+      this.listenerFn();
+    }
+  }
+
   modalVerProveedor(idProv) {
     console.log(this.dialogEditProv);
   }
 
   modalEditarProveedor(idProv) {
-    this.dialogService.open(this.dialogEditProv, {
-      dialogClass: 'dialogTemplate',
-    });
+    let obt = this.foursix
+      .obtenerProveedorPorId(idProv)
+      .subscribe((res: respApiInterface) => {
+        if (res.Ok) {
+          let proveedor = res.Data[0];
+
+          this.dialogService.open(this.dialogEditProv, {
+            context: proveedor, //datos proveedor API
+            dialogClass: 'dialogTemplate',
+          });
+        }
+      });
   }
 
   eliminarProveedor(idProv) {

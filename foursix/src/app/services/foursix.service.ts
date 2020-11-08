@@ -11,4 +11,8 @@ export class FourSixService {
   altaProveedor(proveedor) {
     return this.http.post(environment.urlApi + '/AltaProveedor', proveedor);
   }
+
+  obtenerProveedorPorId(id) {
+    return this.http.get(environment.urlApi + '/Proveedor/' + id);
+  }
 }

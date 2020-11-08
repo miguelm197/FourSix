@@ -1,5 +1,5 @@
 import { ProveedorInterface } from './../../interfaces/proveedor..interface';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -8,35 +8,39 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./proveedor-form.component.scss'],
 })
 export class ProveedorFormComponent implements OnInit {
+  @Input() proveedor: ProveedorInterface;
   @Output() onSubmit = new EventEmitter<any>();
+
+  textoBotonSubmit = 'INGRESAR PROVEEDOR';
 
   constructor() {}
 
   proveedorForm = new FormGroup({
-    codigo: new FormControl('', Validators.compose([Validators.required])),
-    nombre: new FormControl('', Validators.compose([Validators.required])),
-    telefono: new FormControl(
+    Id: new FormControl(null),
+    Codigo: new FormControl('', Validators.compose([Validators.required])),
+    Nombre: new FormControl('', Validators.compose([Validators.required])),
+    Telefono: new FormControl(
       '',
       Validators.compose([
         Validators.pattern('[0-9]+'),
         Validators.minLength(8),
       ])
     ),
-    direccion: new FormControl('', null),
-    rut: new FormControl(
+    Direccion: new FormControl('', null),
+    Rut: new FormControl(
       '',
       Validators.compose([
         Validators.pattern('[0-9]+'),
         Validators.minLength(12),
       ])
     ),
-    razonSocial: new FormControl('', null),
-    activo: new FormControl(true, Validators.compose([Validators.required])),
+    RazonSocial: new FormControl('', null),
+    Activo: new FormControl(true, Validators.compose([Validators.required])),
   });
 
   setRutRazonSocialValidator() {
-    const rutControl = this.proveedorForm.get('rut');
-    const razonSocialControl = this.proveedorForm.get('razonSocial');
+    const rutControl = this.proveedorForm.get('Rut');
+    const razonSocialControl = this.proveedorForm.get('RazonSocial');
 
     rutControl.valueChanges.subscribe((valor) => {
       if (valor) razonSocialControl.setValidators([Validators.required]);
@@ -48,17 +52,21 @@ export class ProveedorFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.setRutRazonSocialValidator();
+    if (this.proveedor) {
+      this.preCargarDatos(this.proveedor);
+      this.textoBotonSubmit = 'EDITAR PROVEEDOR';
+    }
   }
 
   enviar() {
     let proveedor: ProveedorInterface = {
-      Codigo: this.proveedorForm.controls.codigo.value,
-      Nombre: this.proveedorForm.controls.nombre.value,
-      Telefono: this.proveedorForm.controls.telefono.value,
-      Direccion: this.proveedorForm.controls.direccion.value,
-      Rut: parseInt(this.proveedorForm.controls.rut.value),
-      RazonSocial: this.proveedorForm.controls.razonSocial.value,
-      Activo: this.proveedorForm.controls.activo.value,
+      Codigo: this.proveedorForm.controls.Codigo.value,
+      Nombre: this.proveedorForm.controls.Nombre.value,
+      Telefono: this.proveedorForm.controls.Telefono.value,
+      Direccion: this.proveedorForm.controls.Direccion.value,
+      Rut: parseInt(this.proveedorForm.controls.Rut.value),
+      RazonSocial: this.proveedorForm.controls.RazonSocial.value,
+      Activo: this.proveedorForm.controls.Activo.value,
     };
 
     this.onSubmit.emit({ formulario: this.proveedorForm, objeto: proveedor });
@@ -66,5 +74,10 @@ export class ProveedorFormComponent implements OnInit {
 
   limpiar() {
     this.proveedorForm.reset();
+  }
+
+  preCargarDatos(proveedor: ProveedorInterface) {
+    console.log(proveedor);
+    this.proveedorForm.setValue(proveedor);
   }
 }

@@ -10,9 +10,6 @@ const ObtenerProveedores = async (paged_query, filtros) => {
    let wheres = new ObtenerProveedores_Filter(filtros);
    let order = new ObtenerProveedores_Order(query.SortOptions);
 
-   // console.log("ORDER", order);
-   // console.log("QUERYYYY", query);
-
    let queryDB = ` SELECT * FROM PROVEEDORES 
                    WHERE activo = ${wheres.Activo}`;
 
@@ -26,6 +23,17 @@ const ObtenerProveedores = async (paged_query, filtros) => {
 
    // Aplicar ordenamiento
    if (order) queryDB += ` ORDER BY ${order.Columna} ${order.Orden ? "ASC" : "DESC"}`;
+
+   res = await DBACCESS(queryDB);
+
+   return res;
+};
+
+const ObtenerProveedorPorId = async (idProveedor) => {
+   let res = new DataBaseResult();
+
+   let queryDB = ` SELECT * FROM PROVEEDORES 
+                   WHERE Id = ${idProveedor} AND activo = 1`;
 
    res = await DBACCESS(queryDB);
 
@@ -77,4 +85,4 @@ const EditarProveedor = async (id, proveedor) => {
    return res;
 };
 
-module.exports = { ObtenerProveedores, InsertarProveedor, EditarProveedor };
+module.exports = { ObtenerProveedores, ObtenerProveedorPorId, InsertarProveedor, EditarProveedor };

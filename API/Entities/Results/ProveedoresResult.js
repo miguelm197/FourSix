@@ -4,8 +4,9 @@ class ProveedoresResult {
    Nombre;
    Telefono;
    Direccion;
-   RUT;
+   Rut;
    RazonSocial;
+   Activo;
 
    constructor() {}
 }

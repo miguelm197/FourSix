@@ -10,6 +10,7 @@ const Clientes_Ctrl = require("../Controllers/Clientes_Controller");
 router.route("/AltaProveedor").post(Proveedores_Ctrl.AltaProveedor);
 router.route("/EditarProveedor/:id").put(Proveedores_Ctrl.EditarProveedor);
 router.route("/ObtenerProveedores").post(Proveedores_Ctrl.ObtenerProveedores);
+router.route("/Proveedor/:id").get(Proveedores_Ctrl.ObtenerProveedorPorId);
 
 // Clientes
 router.route("/AltaCliente").post(Clientes_Ctrl.AltaCliente);

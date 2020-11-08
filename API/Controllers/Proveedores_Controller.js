@@ -52,6 +52,19 @@ let ObtenerProveedores = async (req, res) => {
    });
 };
 
+let ObtenerProveedorPorId = async (req, res) => {
+   console.log("GET - Obtener Cliente por ID /Proveedor/Id");
+
+   let params = req.params;
+   let retorno = new Generico();
+
+   const srv = new Proveedores_Service();
+   retorno = await srv.obtenerProveedorPorId(params.id);
+
+   console.log(retorno);
+   res.json(retorno);
+};
+
 let AltaProveedor = async (req, res) => {
    console.log("POST - Alta Proveedor /AltaProveedor");
 
@@ -83,4 +96,4 @@ let EditarProveedor = async (req, res) => {
    res.json(retorno);
 };
 
-module.exports = { AltaProveedor, ObtenerProveedores, EditarProveedor };
+module.exports = { AltaProveedor, ObtenerProveedores, ObtenerProveedorPorId, EditarProveedor };
