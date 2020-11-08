@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 
-// Tablas
+//#region TABLAS
 .table_length_info {
     display: flex;
     align-items: center;
@@ -31,6 +31,8 @@
         padding: 10px !important;
         padding-bottom: 18px !important;
         border-bottom: 1px solid transparent !important;
+        font-size: 14px;
+        color: #0f1535;
 
         table.dataTable thead td {
             border: none !important;
@@ -117,3 +119,53 @@
         border-radius: 2px;
     }
 }
+//#endregion
+
+//#region DROPDOWN
+.dropdown {
+    button {
+        height: 20px;
+        padding: 0px;
+        color: #222b45 !important;
+
+        svg {
+            margin-top: -6px;
+        }
+
+        &:active,
+        &:focus {
+            border: none !important;
+            box-shadow: none !important;
+        }
+    }
+
+    .dropdown-menu {
+        border: none;
+        box-shadow: 0 0.5rem 1rem 0 rgba(44, 51, 73, 0.1);
+        min-width: 10rem;
+        max-width: 15rem;
+        border-radius: 0.25rem;
+        text-align: center;
+        padding: 0;
+        margin: 0;
+
+        button {
+            color: #222b45 !important;
+            font-size: 0.8125rem;
+            font-weight: 600;
+            line-height: 1.5rem;
+            padding: 0.75rem 1rem !important;
+            width: calc(100% - 1.5rem);
+            border-bottom: 1px solid #edf1f7;
+            transition: all 0.2s;
+            &:hover {
+                color: #598bff;
+            }
+        }
+
+        button:last-child {
+            border-bottom: none;
+        }
+    }
+}
+//#endregion

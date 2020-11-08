@@ -61,7 +61,7 @@ export class ListaProveedorComponent implements OnInit, AfterViewInit {
 
           render: function (data, type, full, meta) {
             return `
-             <div class="dropdown">
+             <div class="dropdown dropleft">
               <button class="btn btn-link" type="button" id="menuFila" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-three-dots" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                   <path fill-rule="evenodd" d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
