@@ -9,6 +9,7 @@ import {
   NbSidebarModule,
   NbMenuModule,
   NbToastrModule,
+  NbDialogModule,
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { HttpClientModule } from '@angular/common/http';
@@ -25,6 +26,7 @@ import { HttpClientModule } from '@angular/common/http';
     NbMenuModule.forRoot(),
     NbToastrModule.forRoot(),
     NbMenuModule.forRoot(),
+    NbDialogModule.forRoot(),
     NbEvaIconsModule,
   ],
   providers: [],

@@ -11,6 +11,7 @@ import {
   NbCheckboxModule,
   NbContextMenuModule,
   NbDatepickerModule,
+  NbDialogModule,
   NbFormFieldModule,
   NbIconModule,
   NbInputModule,
@@ -55,6 +56,7 @@ import { ProveedorFormComponent } from './../components/proveedor-form/proveedor
     NbAutocompleteModule,
     NbMenuModule,
     NbContextMenuModule,
+    NbDialogModule.forChild(),
   ],
 })
 export class PagesModule {}

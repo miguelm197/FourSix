@@ -7,12 +7,12 @@ import {
   OnInit,
   AfterViewInit,
   ViewChild,
-  Inject,
   Renderer2,
+  TemplateRef,
 } from '@angular/core';
 
 import { DataTableDirective } from 'angular-datatables';
-import { NbMenuService } from '@nebular/theme';
+import { NbDialogService, NbMenuService } from '@nebular/theme';
 
 @Component({
   selector: 'app-lista-proveedor',
@@ -25,10 +25,13 @@ export class ListaProveedorComponent implements OnInit, AfterViewInit {
   dtOptions: DataTables.Settings = {};
 
   constructor(
+    private dialogService: NbDialogService,
     private nbMenuService: NbMenuService,
     private renderer: Renderer2,
     private utils: UtilsService
   ) {}
+  @ViewChild('editProveedorTpl')
+  private dialogEditProv: TemplateRef<any>;
 
   menuFila = [{ title: 'Profile' }, { title: 'Logout' }];
 
@@ -112,11 +115,13 @@ export class ListaProveedorComponent implements OnInit, AfterViewInit {
   }
 
   modalVerProveedor(idProv) {
-    alert('modalVerProveedor - ' + idProv);
+    console.log(this.dialogEditProv);
   }
 
   modalEditarProveedor(idProv) {
-    alert('modalEditarProveedor - ' + idProv);
+    this.dialogService.open(this.dialogEditProv, {
+      dialogClass: 'dialogTemplate',
+    });
   }
 
   eliminarProveedor(idProv) {
