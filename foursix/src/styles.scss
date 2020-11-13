@@ -5,7 +5,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-top: 50px;
+    margin-top: 44px;
 
     div {
         display: flex;
@@ -42,17 +42,13 @@
     }
 
     table.dataTable tbody tr {
-        .dropdown {
-            button {
-                opacity: 0;
-                transition: all 0.1s;
-            }
+        .dropdown > button {
+            opacity: 0;
+            transition: all 0.1s;
         }
         &:hover {
-            .dropdown {
-                button {
-                    opacity: 1;
-                }
+            .dropdown > button {
+                opacity: 1;
             }
         }
     }
@@ -195,6 +191,25 @@
 
     max-width: 1400px;
     max-height: 800px;
+
+    .cerrar {
+        cursor: pointer;
+        color: blacK;
+        transition: 0.3s;
+        opacity: 0.5;
+
+        &:hover {
+            opacity: 0.8;
+        }
+    }
+}
+
+.tarjetaProveedor nb-dialog-container {
+    width: 99vw !important;
+    height: 95vh !important;
+
+    max-width: 700px;
+    max-height: 500px;
 
     .cerrar {
         cursor: pointer;

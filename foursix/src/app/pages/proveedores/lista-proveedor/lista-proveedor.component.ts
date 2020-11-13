@@ -1,3 +1,5 @@
+import { ProveedorInterface } from './../../../interfaces/proveedor..interface';
+import { TarjetaProveedorComponent } from './../../../components/tarjeta-proveedor/tarjeta-proveedor.component';
 import { respApiInterface } from './../../../interfaces/genericos.interface';
 import { FourSixService } from './../../../services/foursix.service';
 import { environment } from './../../../../environments/environment.prod';
@@ -37,6 +39,9 @@ export class ListaProveedorComponent
 
   @ViewChild('editProveedorTpl')
   private dialogEditProv: TemplateRef<any>;
+
+  @ViewChild('verProveedorTpl')
+  private dialogVerProv: TemplateRef<any>;
 
   menuFila = [{ title: 'Profile' }, { title: 'Logout' }];
   listenerFn: () => void;
@@ -120,11 +125,25 @@ export class ListaProveedorComponent
   }
 
   modalVerProveedor(idProv) {
-    console.log(this.dialogEditProv);
+    this.foursix
+      .obtenerProveedorPorId(idProv)
+      .subscribe((res: respApiInterface) => {
+        if (res.Ok) {
+          let proveedor = res.Data[0];
+          console.log(proveedor);
+
+          this.dialogService.open(this.dialogVerProv, {
+            context: proveedor, //datos proveedor API
+            dialogClass: 'tarjetaProveedor',
+          });
+        }
+      });
+
+    // this.dialogService.open(TarjetaProveedorComponent, {});
   }
 
   modalEditarProveedor(idProv) {
-    let obt = this.foursix
+    this.foursix
       .obtenerProveedorPorId(idProv)
       .subscribe((res: respApiInterface) => {
         if (res.Ok) {

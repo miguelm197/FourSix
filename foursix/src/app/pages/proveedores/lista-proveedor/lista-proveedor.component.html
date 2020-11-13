@@ -12,14 +12,38 @@
         <nb-card-body>
             <div class="p-5">
                 <div class="col-7">
-
                     <app-proveedor-form [proveedor]="data"></app-proveedor-form>
-
                 </div>
-
             </div>
         </nb-card-body>
     </nb-card>
+</ng-template>
+
+
+
+<!-- Modal VER PROVEEDOR -->
+<ng-template #verProveedorTpl let-data let-ref="dialogRef">
+
+    <nb-card>
+        <nb-card-header class="d-flex justify-content-between">
+
+            <h2>{{data.Codigo}} - {{data.Nombre}}</h2>
+
+            <a (click)="ref.close()" class="cerrar">
+                <nb-icon icon="close-circle-outline" pack="eva"></nb-icon>
+            </a>
+
+        </nb-card-header>
+        <nb-card-body>
+            <div class="p-5">
+                <div class="col-12">
+                    <app-tarjeta-proveedor [proveedor]="data"></app-tarjeta-proveedor>
+                </div>
+            </div>
+        </nb-card-body>
+    </nb-card>
+
+
 </ng-template>
 
 

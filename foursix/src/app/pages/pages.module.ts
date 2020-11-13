@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { PagesRoutingModule } from './pages-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import {
   NbAutocompleteModule,
@@ -16,6 +15,7 @@ import {
   NbIconModule,
   NbInputModule,
   NbLayoutModule,
+  NbListModule,
   NbMenuModule,
   NbSelectModule,
   NbSidebarModule,
@@ -27,6 +27,7 @@ import { PagesComponent } from './pages.component';
 import { NuevoProveedorComponent } from './proveedores/nuevo-proveedor/nuevo-proveedor.component';
 import { ListaProveedorComponent } from './proveedores/lista-proveedor/lista-proveedor.component';
 import { ProveedorFormComponent } from './../components/proveedor-form/proveedor-form.component';
+import { TarjetaProveedorComponent } from './../components/tarjeta-proveedor/tarjeta-proveedor.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { ProveedorFormComponent } from './../components/proveedor-form/proveedor
     NuevoProveedorComponent,
     ProveedorFormComponent,
     ListaProveedorComponent,
+    TarjetaProveedorComponent,
   ],
   imports: [
     CommonModule,
@@ -57,6 +59,7 @@ import { ProveedorFormComponent } from './../components/proveedor-form/proveedor
     NbMenuModule,
     NbContextMenuModule,
     NbDialogModule.forChild(),
+    NbListModule,
   ],
 })
 export class PagesModule {}
