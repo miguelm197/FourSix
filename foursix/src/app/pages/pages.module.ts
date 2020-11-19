@@ -1,3 +1,4 @@
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { CommonModule } from '@angular/common';
 import { PagesRoutingModule } from './pages-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -60,6 +61,7 @@ import { TarjetaProveedorComponent } from './../components/tarjeta-proveedor/tar
     NbContextMenuModule,
     NbDialogModule.forChild(),
     NbListModule,
+    SweetAlert2Module,
   ],
 })
 export class PagesModule {}

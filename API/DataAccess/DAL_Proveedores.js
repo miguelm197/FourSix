@@ -54,6 +54,7 @@ const InsertarProveedor = async (proveedor) => {
                      (${proveedorBD.Codigo}, ${proveedorBD.Nombre}, ${proveedorBD.Telefono}
                      ,${proveedorBD.Direccion}, ${proveedorBD.RUT}, ${proveedorBD.RazonSocial})
    `;
+
    res = await DBACCESS(queryDB);
 
    return res;
@@ -85,4 +86,21 @@ const EditarProveedor = async (id, proveedor) => {
    return res;
 };
 
-module.exports = { ObtenerProveedores, ObtenerProveedorPorId, InsertarProveedor, EditarProveedor };
+const BajaProveedor = async (idProveedor) => {
+   let res = new DataBaseResult();
+
+   // Validar datos
+   if (!idProveedor) return res.set(true, "IdProveedor requerido");
+
+   let queryDB = ` UPDATE [dbo].[Proveedores] SET  
+                     [Activo] = 'False'
+                  WHERE [Id] = ${idProveedor} 
+   `;
+
+   console.log(queryDB);
+   res = await DBACCESS(queryDB);
+
+   return res;
+};
+
+module.exports = { ObtenerProveedores, ObtenerProveedorPorId, InsertarProveedor, EditarProveedor, BajaProveedor };

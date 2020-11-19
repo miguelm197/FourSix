@@ -14,6 +14,8 @@ import {
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { HttpClientModule } from '@angular/common/http';
 
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -28,6 +30,7 @@ import { HttpClientModule } from '@angular/common/http';
     NbMenuModule.forRoot(),
     NbDialogModule.forRoot(),
     NbEvaIconsModule,
+    SweetAlert2Module.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent],

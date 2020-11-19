@@ -4,7 +4,8 @@ class Cliente {
    Nombre = null;
    Telefono = null;
    Direccion = null;
-   Mail = null;
+   RUT = null;
+   RazonSocial = null;
 
    constructor(cliente) {
       Utils.setDefaultDataClass(this, cliente);

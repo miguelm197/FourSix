@@ -10,13 +10,11 @@ class BD_Proveedores {
    Activo = 1;
 
    constructor(proveedor) {
-      Utils.setDefaultDataClass(this, proveedor);
-
-      if (this.Codigo) this.Codigo = "'" + this.Codigo + "'";
-      if (this.Nombre) this.Nombre = "'" + this.Nombre + "'";
-      if (this.Direccion) this.Direccion = "'" + this.Direccion + "'";
-      if (this.RazonSocial) this.RazonSocial = "'" + this.RazonSocial + "'";
-      if (this.Telefono) this.Telefono = "'" + this.Telefono + "'";
+      if (proveedor.Codigo) this.Codigo = "'" + proveedor.Codigo + "'";
+      if (proveedor.Nombre) this.Nombre = "'" + proveedor.Nombre + "'";
+      if (proveedor.Direccion) this.Direccion = "'" + proveedor.Direccion + "'";
+      if (proveedor.RazonSocial) this.RazonSocial = "'" + proveedor.RazonSocial + "'";
+      if (proveedor.Telefono) this.Telefono = "'" + proveedor.Telefono + "'";
 
       if (proveedor.Rut) this.RUT = proveedor.Rut;
    }
@@ -26,14 +24,17 @@ class BD_Clientes {
    Nombre = null;
    Telefono = null;
    Direccion = null;
-   Mail = null;
+   RUT = null;
+   RazonSocial = null;
+   Activo = 1;
 
    constructor(cliente) {
-      Utils.setDefaultDataClass(this, cliente);
+      if (cliente.Nombre) this.Nombre = "'" + cliente.Nombre + "'";
+      if (cliente.Direccion) this.Direccion = "'" + cliente.Direccion + "'";
+      if (cliente.RazonSocial) this.RazonSocial = "'" + cliente.RazonSocial + "'";
+      if (cliente.Telefono) this.Telefono = "'" + cliente.Telefono + "'";
 
-      if (this.Nombre) this.Nombre = "'" + this.Nombre + "'";
-      if (this.Direccion) this.Direccion = "'" + this.Direccion + "'";
-      if (this.Mail) this.Mail = "'" + this.Mail + "'";
+      if (cliente.Rut) this.RUT = cliente.Rut;
    }
 }
 

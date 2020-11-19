@@ -53,7 +53,7 @@ let ObtenerProveedores = async (req, res) => {
 };
 
 let ObtenerProveedorPorId = async (req, res) => {
-   console.log("GET - Obtener Cliente por ID /Proveedor/Id");
+   console.log("GET - Obtener proveedor por ID /Proveedor/Id");
 
    let params = req.params;
    let retorno = new Generico();
@@ -96,4 +96,19 @@ let EditarProveedor = async (req, res) => {
    res.json(retorno);
 };
 
-module.exports = { AltaProveedor, ObtenerProveedores, ObtenerProveedorPorId, EditarProveedor };
+let BajaProveedor = async (req, res) => {
+   console.log("DELETE - Baja Proveedor /BajaProveedor");
+
+   let params = req.params;
+   let retorno = new Generico();
+
+   const srv = new Proveedores_Service();
+   retorno = await srv.bajaProveedor(params.id);
+
+   console.log(retorno.Message);
+   console.log(retorno.InfoExtra);
+
+   res.json(retorno);
+};
+
+module.exports = { AltaProveedor, ObtenerProveedores, ObtenerProveedorPorId, EditarProveedor, BajaProveedor };

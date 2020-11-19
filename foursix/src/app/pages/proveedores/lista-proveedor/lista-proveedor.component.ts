@@ -1,10 +1,3 @@
-import { ProveedorInterface } from './../../../interfaces/proveedor..interface';
-import { TarjetaProveedorComponent } from './../../../components/tarjeta-proveedor/tarjeta-proveedor.component';
-import { respApiInterface } from './../../../interfaces/genericos.interface';
-import { FourSixService } from './../../../services/foursix.service';
-import { environment } from './../../../../environments/environment.prod';
-import { UtilsService } from './../../../utils/utils.service';
-
 import {
   Component,
   OnInit,
@@ -15,8 +8,19 @@ import {
   TemplateRef,
 } from '@angular/core';
 
-import { DataTableDirective } from 'angular-datatables';
-import { NbDialogService, NbMenuService } from '@nebular/theme';
+import {
+  NbDialogService,
+  NbMenuService,
+  NbToastrService,
+} from '@nebular/theme';
+
+import { ProveedorInterface } from './../../../interfaces/proveedor..interface';
+import { TarjetaProveedorComponent } from './../../../components/tarjeta-proveedor/tarjeta-proveedor.component';
+import { respApiInterface } from './../../../interfaces/genericos.interface';
+import { FourSixService } from './../../../services/foursix.service';
+import { environment } from './../../../../environments/environment.prod';
+import { UtilsService } from './../../../utils/utils.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-lista-proveedor',
@@ -25,17 +29,17 @@ import { NbDialogService, NbMenuService } from '@nebular/theme';
 })
 export class ListaProveedorComponent
   implements OnInit, AfterViewInit, OnDestroy {
-  @ViewChild(DataTableDirective, { static: false })
-  datatableElement: DataTableDirective;
-  dtOptions: DataTables.Settings = {};
-
   constructor(
     private dialogService: NbDialogService,
     private nbMenuService: NbMenuService,
     private renderer: Renderer2,
     private foursix: FourSixService,
-    private utils: UtilsService
+    private utils: UtilsService,
+    private toastrService: NbToastrService
   ) {}
+
+  dtOptions: DataTables.Settings = {};
+  datatable;
 
   @ViewChild('editProveedorTpl')
   private dialogEditProv: TemplateRef<any>;
@@ -43,7 +47,6 @@ export class ListaProveedorComponent
   @ViewChild('verProveedorTpl')
   private dialogVerProv: TemplateRef<any>;
 
-  menuFila = [{ title: 'Profile' }, { title: 'Logout' }];
   listenerFn: () => void;
 
   ngOnInit(): void {
@@ -85,7 +88,7 @@ export class ListaProveedorComponent
               <div class="dropdown-menu" aria-labelledby="menuFila">
                 <button data-item="verMas" data-provId=${data.Id} class="dropdown-item p-2 pl-3" type="button">Ver más</button>
                 <button data-item="editar" data-provId=${data.Id} class="dropdown-item p-2 pl-3" type="button">Editar</button>
-                <button data-item="eliminar" data-provId=${data.Id} class="dropdown-item p-2 pl-3" type="button">Eliminar</button>
+                <button data-item="eliminar" data-provId=${data.Id} data-provNombre=${data.Nombre} class="dropdown-item p-2 pl-3" type="button">Eliminar</button>
               </div>
             </div>
             `;
@@ -96,23 +99,28 @@ export class ListaProveedorComponent
       order: [[1, 'asc']],
       language: this.utils.lenguajeDT(),
     };
+
+    this.datatable = $('#dtProveedores').DataTable(this.dtOptions);
+
+    this.utils.busquedaDataTable(this.datatable);
   }
 
   ngAfterViewInit(): void {
-    this.utils.busquedaDataTable(this.datatableElement);
-
     // Escucha el click en el menú contextual de las filas
     this.listenerFn = this.renderer.listen(document, 'click', (event) => {
       let item = event.explicitOriginalTarget.attributes['data-item'];
       let provId = event.explicitOriginalTarget.attributes['data-provId'];
+      let provNombre =
+        event.explicitOriginalTarget.attributes['data-provNombre'];
 
       item = item ? item.nodeValue : false;
       provId = provId ? provId.nodeValue : false;
+      provNombre = provNombre ? provNombre.nodeValue : false;
 
       if (item && provId) {
         if (item == 'verMas') this.modalVerProveedor(provId);
         if (item == 'editar') this.modalEditarProveedor(provId);
-        if (item == 'eliminar') this.eliminarProveedor(provId);
+        if (item == 'eliminar') this.eliminarProveedor(provId, provNombre);
       }
     });
   }
@@ -157,7 +165,70 @@ export class ListaProveedorComponent
       });
   }
 
-  eliminarProveedor(idProv) {
-    alert('eliminarProveedor - ' + idProv);
+  eliminarProveedor(idProv, provNombre) {
+    Swal.fire({
+      title: 'Eliminar proveedor',
+      text: `Seguro desea eliminar el proveedor ${provNombre}?`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3366ff',
+      cancelButtonColor: '#d33',
+      confirmButtonText: '<strong>SI</strong>',
+      cancelButtonText: '<strong>CANCELAR</strong>',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.eliminarProveedorAccion(idProv);
+      }
+    });
+  }
+
+  onSubmit(proveedor, dialog) {
+    // Realiza el POSTEO del proveedor a la API
+    this.foursix
+      .editarProveedor(proveedor.objeto.Id, proveedor.objeto)
+      .subscribe(
+        (res: respApiInterface) => {
+          console.log('RESP API:', res);
+          if (res.Ok) {
+            this.toastrService.show(
+              `Se editó el proveedor ${res.Extra['Nombre']} correctamente`,
+              'Proveedores',
+              { status: 'success' }
+            );
+            dialog.close();
+            this.rerenderTabla();
+          } else {
+            // ERROR
+            this.toastrService.show(res.InfoExtra, 'Proveedores', {
+              status: 'danger',
+            });
+          }
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+  }
+
+  private eliminarProveedorAccion(idProv) {
+    this.foursix.bajaProveedor(idProv).subscribe((resp: respApiInterface) => {
+      if (resp.Ok) {
+        console.log(resp);
+        this.toastrService.show(resp.Message, 'Proveedores', {
+          status: 'success',
+        });
+
+        this.rerenderTabla();
+      } else {
+        // ERROR
+        this.toastrService.show(resp.InfoExtra, 'Proveedores', {
+          status: 'danger',
+        });
+      }
+    });
+  }
+
+  private rerenderTabla(): void {
+    this.datatable.draw();
   }
 }

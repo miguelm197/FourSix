@@ -33,15 +33,22 @@ export class UtilsService {
     };
   }
 
-  busquedaDataTable(datatableElement) {
-    datatableElement.dtInstance.then((dtInstance: DataTables.Api) => {
-      dtInstance.columns().every(function () {
-        const that = this;
-        $('input', this.footer()).on('keyup change', function () {
-          if (that.search() !== this['value']) {
-            that.search(this['value']).draw();
-          }
-        });
+  busquedaDataTable(datatable) {
+    datatable.columns().every(function () {
+      var column = this;
+      var value;
+      var input_filter_timeout;
+      $('input', this.footer()).on('keyup change', function () {
+        value = this['value'];
+        if (column.search() !== value && (value.length >= 2 || value === '')) {
+          clearTimeout(input_filter_timeout);
+          input_filter_timeout = setTimeout(function () {
+            column.search(value).draw();
+          }, 0); // 1000 miliseg = 1 seg.
+        }
+      });
+      $('select', this.footer()).on('change', function () {
+        column.search($(this).val()).draw();
       });
     });
   }

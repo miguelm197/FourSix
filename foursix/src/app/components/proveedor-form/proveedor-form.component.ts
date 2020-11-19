@@ -54,12 +54,13 @@ export class ProveedorFormComponent implements OnInit {
     this.setRutRazonSocialValidator();
     if (this.proveedor) {
       this.preCargarDatos(this.proveedor);
-      this.textoBotonSubmit = 'EDITAR PROVEEDOR';
+      this.textoBotonSubmit = 'GUARDAR CAMBIOS';
     }
   }
 
   enviar() {
     let proveedor: ProveedorInterface = {
+      Id: parseInt(this.proveedorForm.controls.Id.value),
       Codigo: this.proveedorForm.controls.Codigo.value,
       Nombre: this.proveedorForm.controls.Nombre.value,
       Telefono: this.proveedorForm.controls.Telefono.value,

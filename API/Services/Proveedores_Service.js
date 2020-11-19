@@ -86,6 +86,7 @@ class Proveedores_Service {
          retorno.Message = "Ha ocurrido un error al impactar";
 
          retorno.InfoExtra = data.Data;
+         console.log(data);
 
          if (data.ErrorDetail) {
             let errorBD_message = data.ErrorDetail.message;
@@ -125,6 +126,39 @@ class Proveedores_Service {
       } else {
          console.log(proveedor);
          retorno.Message = "Proveedor '" + proveedor.Nombre + "' editado correctamente";
+         retorno.Extra = proveedor;
+      }
+
+      return retorno;
+   }
+
+   async bajaProveedor(id) {
+      let retorno = new Generico();
+
+      let proveedor = await Proveedores_DAL.ObtenerProveedorPorId(id);
+
+      if (proveedor.Data.length == 0) return retorno.set(false, 400, `El proveedor ${id} no está registrado o no está activo.`);
+
+      let data = await Proveedores_DAL.BajaProveedor(id);
+
+      if (data.Error) {
+         retorno.Ok = false;
+         retorno.Status = 500;
+         retorno.Message = "Ha ocurrido un error al impactar";
+
+         retorno.InfoExtra = data.Data;
+
+         console.log("INFO EXTRA", data);
+         if (data.ErrorDetail) {
+            let errorBD_message = data.ErrorDetail.message;
+
+            if (errorBD_message.indexOf("UC_Codigo")) {
+               retorno.InfoExtra = "Ya existe un proveedor con el código: " + proveedor.Codigo;
+            }
+         }
+      } else {
+         console.log(proveedor);
+         retorno.Message = "Proveedor '" + proveedor.Data[0].Nombre + "' dado de baja correctamente";
          retorno.Extra = proveedor;
       }
 

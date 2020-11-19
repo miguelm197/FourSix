@@ -11,8 +11,19 @@ class ObtenerProveedores_Filter {
 
    constructor(filtros) {
       Utils.setDefaultDataClass(this, filtros);
-
    }
 }
 
-module.exports = { ObtenerProveedores_Filter };
+class ObtenerClientes_Filter {
+   Nombre;
+   Direccion;
+   Telefono;
+   RazonSocial;
+   RUT;
+   Activo = 1;
+
+   constructor(filtros) {
+      Utils.setDefaultDataClass(this, filtros);
+   }
+}
+module.exports = { ObtenerProveedores_Filter, ObtenerClientes_Filter };
