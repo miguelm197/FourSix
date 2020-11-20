@@ -1,8 +1,9 @@
-const { Generico } = require("../Entities/Genericos");
+const { Generico, PagedQuery, PagedResult } = require("../Entities/Genericos");
 const { Cliente } = require("../Entities/Cliente");
 const Clientes_DAL = require("../DataAccess/DAL_Clientes");
 const { ObtenerClientes_Filter } = require("../DataAccess/Filters");
 const { ClientesResult } = require("../Entities/Results/ClientesResult");
+const { ProveedoresResult } = require("../Entities/Results/ProveedoresResult");
 
 class Clientes_Service {
    async obtenerClientes(paged_query, filters) {

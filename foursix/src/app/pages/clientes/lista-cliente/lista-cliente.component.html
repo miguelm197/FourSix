@@ -1,0 +1,86 @@
+<!-- Modal EDITAR CLIENTE -->
+<ng-template #editClienteTpl let-data let-ref="dialogRef">
+    <nb-card>
+        <nb-card-header class="d-flex justify-content-between">
+
+            <span> Editar cliente </span>
+            <a (click)="ref.close()" class="cerrar">
+                <nb-icon icon="close-circle-outline" pack="eva"></nb-icon>
+            </a>
+
+        </nb-card-header>
+        <nb-card-body>
+            <div class="p-5">
+                <div class="col-7">
+                    <app-cliente-form [cliente]="data" (onSubmit)="onSubmit($event, ref)"></app-cliente-form>
+                </div>
+            </div>
+        </nb-card-body>
+    </nb-card>
+</ng-template>
+
+
+
+<!-- Modal VER CLIENTE -->
+<ng-template #verClienteTpl let-data let-ref="dialogRef">
+
+    <nb-card>
+        <nb-card-header class="d-flex justify-content-between">
+
+            <h2>{{data.Codigo}} - {{data.Nombre}}</h2>
+
+            <a (click)="ref.close()" class="cerrar">
+                <nb-icon icon="close-circle-outline" pack="eva"></nb-icon>
+            </a>
+
+        </nb-card-header>
+        <nb-card-body>
+            <div class="p-5">
+                <div class="col-12">
+                    <!-- <app-tarjeta-cliente [cliente]="data"></app-tarjeta-cliente> -->
+                </div>
+            </div>
+        </nb-card-body>
+    </nb-card>
+
+
+</ng-template>
+
+
+
+<!-- TABLA -->
+<nb-card>
+    <nb-card-header>
+        Lista de clientes
+    </nb-card-header>
+
+    <nb-card-body>
+
+        <table class="row-border hover" id="dtClientes">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Teléfono</th>
+                    <th>Dirección</th>
+                    <th>RUT</th>
+                    <th>Razon social</th>
+                    <th></th>
+                </tr>
+            </thead>
+
+            <tfoot style="display: table-header-group" class="filtros">
+                <tr>
+                    <th><input class="form-control" type="search" placeholder="BUSCAR POR NOMBRE ..." /></th>
+                    <th><input class="form-control" type="search" placeholder="BUSCAR POR TELEFONO ..." /></th>
+                    <th><input class="form-control" type="search" placeholder="BUSCAR POR DIRECCION ..." /></th>
+                    <th><input class="form-control" type="search" placeholder="BUSCAR POR RUT ..." /></th>
+                    <th><input class="form-control" type="search" placeholder="BUSCAR POR RAZON SOCIAL ..." /></th>
+                    <th></th>
+                </tr>
+            </tfoot>
+
+            <tbody></tbody>
+        </table>
+
+    </nb-card-body>
+</nb-card>

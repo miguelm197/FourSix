@@ -1,8 +1,9 @@
 const { ObtenerClientes_Filter } = require("../DataAccess/Filters");
-const { Generico } = require("../Entities/Genericos");
+const { Generico, Grid, PagedQuery, Sort } = require("../Entities/Genericos");
+
 const { Clientes_Service } = require("../Services/Clientes_Service");
 const Cliente = require("../Entities/Cliente");
-const ClientesResult = require("../Entities/Results/ClientesResult");
+const { ClientesResult } = require("../Entities/Results/ClientesResult");
 
 let ObtenerClientes = async (req, res) => {
    console.log("POST - Obtener Clientes /Clientes/ObtenerClientes");

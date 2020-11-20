@@ -33,6 +33,22 @@ export class PagesComponent implements OnInit {
         },
       ],
     },
+    {
+      title: 'Clientes',
+      icon: 'person-outline',
+      children: [
+        {
+          title: 'Nuevo cliente',
+          icon: 'plus-circle-outline',
+          link: 'clientes/alta',
+        },
+        {
+          title: 'Lista de clientes',
+          icon: 'book-outline',
+          link: 'clientes/lista',
+        },
+      ],
+    },
     // {
     //   title: 'Login',
     //   icon: 'log-in-outline',

@@ -38,7 +38,7 @@ export class ProveedorFormComponent implements OnInit {
     Activo: new FormControl(true, Validators.compose([Validators.required])),
   });
 
-  setRutRazonSocialValidator() {
+  private setRutRazonSocialValidator() {
     const rutControl = this.proveedorForm.get('Rut');
     const razonSocialControl = this.proveedorForm.get('RazonSocial');
 

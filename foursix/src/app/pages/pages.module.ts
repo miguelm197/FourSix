@@ -1,3 +1,4 @@
+import { ClienteFormComponent } from './../components/cliente-form/cliente-form.component';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { CommonModule } from '@angular/common';
 import { PagesRoutingModule } from './pages-routing.module';
@@ -29,14 +30,19 @@ import { NuevoProveedorComponent } from './proveedores/nuevo-proveedor/nuevo-pro
 import { ListaProveedorComponent } from './proveedores/lista-proveedor/lista-proveedor.component';
 import { ProveedorFormComponent } from './../components/proveedor-form/proveedor-form.component';
 import { TarjetaProveedorComponent } from './../components/tarjeta-proveedor/tarjeta-proveedor.component';
+import { NuevoClienteComponent } from './clientes/nuevo-cliente/nuevo-cliente.component';
+import { ListaClienteComponent } from './clientes/lista-cliente/lista-cliente.component';
 
 @NgModule({
   declarations: [
     PagesComponent,
     NuevoProveedorComponent,
     ProveedorFormComponent,
+    ClienteFormComponent,
     ListaProveedorComponent,
     TarjetaProveedorComponent,
+    NuevoClienteComponent,
+    ListaClienteComponent,
   ],
   imports: [
     CommonModule,

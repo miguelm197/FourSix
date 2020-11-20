@@ -1,0 +1,110 @@
+<form [formGroup]="clienteForm" (ngSubmit)="enviar()">
+
+    <!-- CORREO -->
+
+
+    <br>
+
+
+    <!-- Nombre -->
+    <div class="form-control-group mb-5 row">
+        <label class="label col-4 col-form-label text-left">Nombre cliente: <span style="color: red;"> *</span></label>
+
+        <div class="col-8">
+            <nb-form-field>
+                <nb-icon nbPrefix icon="person-outline" pack="eva"></nb-icon>
+
+                <input nbInput placeholder="Nombre del cliente" fullWidth autofocus formControlName="Nombre"
+                    [status]="clienteForm.controls.Nombre.dirty ? (clienteForm.controls.Nombre.invalid  ? 'danger' : 'success') : 'basic'">
+            </nb-form-field>
+
+            <ng-container *ngIf="clienteForm.controls.Nombre.invalid && clienteForm.controls.Nombre.touched">
+                <p class="caption status-danger mt-2" *ngIf="clienteForm.controls.Nombre.errors?.required">
+                    El nombre del cliente es requerido!
+                </p>
+            </ng-container>
+        </div>
+    </div>
+
+
+    <!-- Teléfono -->
+    <div class="form-control-group mb-3 row">
+        <label class="label col-4 col-form-label text-left">Teléfono: </label>
+
+        <div class="col-8">
+            <nb-form-field>
+                <nb-icon nbPrefix icon="phone-outline" pack="eva"></nb-icon>
+
+                <input nbInput placeholder="Teléfono del cliente" fullWidth autofocus formControlName="Telefono"
+                    [status]="clienteForm.controls.Telefono.dirty ? (clienteForm.controls.Telefono.invalid  ? 'danger' : 'success') : 'basic'">
+            </nb-form-field>
+
+            <ng-container *ngIf="clienteForm.controls.Telefono.invalid && clienteForm.controls.Telefono.touched">
+                <p class="caption status-danger mt-2" *ngIf="clienteForm.controls.Telefono.errors?.pattern">
+                    El teléfono debe ser real!
+                </p>
+            </ng-container>
+        </div>
+    </div>
+
+
+    <!-- Dirección -->
+    <div class="form-control-group mb-3 row">
+        <label class="label col-4 col-form-label text-left">Dirección: </label>
+
+        <div class="col-8">
+            <nb-form-field>
+                <nb-icon nbPrefix icon="pin-outline" pack="eva"></nb-icon>
+
+                <input nbInput placeholder="Dirección del cliente" fullWidth autofocus formControlName="Direccion"
+                    [status]="clienteForm.controls.Direccion.dirty ? (clienteForm.controls.Direccion.invalid  ? 'danger' : 'success') : 'basic'">
+            </nb-form-field>
+        </div>
+    </div>
+
+
+    <!-- Rut -->
+    <div class="form-control-group mb-3 row">
+        <label class="label col-4 col-form-label text-left">RUT: </label>
+
+        <div class="col-8">
+            <nb-form-field>
+                <nb-icon nbPrefix icon="briefcase-outline" pack="eva"></nb-icon>
+
+                <input nbInput placeholder="Rut del cliente" fullWidth autofocus formControlName="Rut"
+                    [status]="clienteForm.controls.Rut.dirty ? (clienteForm.controls.Rut.invalid  ? 'danger' : 'success') : 'basic'">
+            </nb-form-field>
+
+            <ng-container *ngIf="clienteForm.controls.Rut.invalid && clienteForm.controls.Rut.touched">
+                <p class="caption status-danger mt-2" *ngIf="clienteForm.controls.Rut.errors?.required">
+                    El RUT es requerido si hay Razón Social!
+                </p>
+            </ng-container>
+        </div>
+    </div>
+
+
+    <!-- Razon Social -->
+    <div class="form-control-group mb-3 row">
+        <label class="label col-4 col-form-label text-left">Razón social: </label>
+
+        <div class="col-8">
+            <nb-form-field>
+                <nb-icon nbPrefix icon="briefcase-outline" pack="eva"></nb-icon>
+
+                <input nbInput placeholder="Razón social del cliente" fullWidth autofocus formControlName="RazonSocial"
+                    [status]="clienteForm.controls.RazonSocial.dirty ? (clienteForm.controls.RazonSocial.invalid  ? 'danger' : 'success') : 'basic'">
+            </nb-form-field>
+
+            <ng-container *ngIf="clienteForm.controls.RazonSocial.invalid && clienteForm.controls.RazonSocial.touched">
+                <p class="caption status-danger mt-2" *ngIf="clienteForm.controls.RazonSocial.errors?.required">
+                    El RUT es requerido si hay Razón Social!
+                </p>
+            </ng-container>
+        </div>
+    </div>
+
+    <br><br><br>
+
+    <button nbButton status="success" [disabled]="!clienteForm.valid"> {{textoBotonSubmit}} </button>
+</form>

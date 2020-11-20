@@ -8,6 +8,9 @@ import { Injectable } from '@angular/core';
 export class FourSixService {
   constructor(private http: HttpClient) {}
 
+  //#region PROVEEDORES
+  // -----------------------------------------------------------------------------------
+
   altaProveedor(proveedor) {
     return this.http.post(environment.urlApi + '/AltaProveedor', proveedor);
   }
@@ -26,4 +29,25 @@ export class FourSixService {
   bajaProveedor(id) {
     return this.http.delete(environment.urlApi + '/BorrarProveedor/' + id);
   }
+  //#endregion
+
+  //#region CLIENTES
+  // -----------------------------------------------------------------------------------
+  altaCliente(cliente) {
+    return this.http.post(environment.urlApi + '/cliente/alta', cliente);
+  }
+
+  editarCliente(id, cliente) {
+    return this.http.put(environment.urlApi + '/cliente/' + id, cliente);
+  }
+
+  obtenerClientePorId(id) {
+    return this.http.get(environment.urlApi + '/cliente/' + id);
+  }
+
+  bajaCliente(id) {
+    return this.http.delete(environment.urlApi + '/cliente/' + id);
+  }
+
+  //#endregion
 }

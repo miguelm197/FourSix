@@ -14,7 +14,7 @@ router.route("/Proveedor/:id").get(Proveedores_Ctrl.ObtenerProveedorPorId);
 router.route("/BorrarProveedor/:id").delete(Proveedores_Ctrl.BajaProveedor);
 
 // Clientes
-router.route("/cliente/btenerClientes").get(Clientes_Ctrl.ObtenerClientes);
+router.route("/cliente/obtenerClientes").post(Clientes_Ctrl.ObtenerClientes);
 router.route("/cliente/alta").post(Clientes_Ctrl.AltaCliente);
 router.route("/cliente/:id").get(Clientes_Ctrl.ObtenerClientePorId);
 router.route("/cliente/:id").put(Clientes_Ctrl.EditarCliente);

@@ -1,6 +1,5 @@
-export interface ProveedorInterface {
+export interface ClienteInterface {
   Id?: number;
-  Codigo: string;
   Nombre: string;
   Telefono?: string;
   Direccion?: string;
