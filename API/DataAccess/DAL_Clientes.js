@@ -28,11 +28,11 @@ const ObtenerClientes = async (paged_query, filtros) => {
    return res;
 };
 
-const ObtenerClientePorId = async (idCliente) => {
+const ObtenerClientePorId = async (id) => {
    let res = new DataBaseResult();
 
    let queryDB = ` SELECT * FROM CLIENTES 
-                   WHERE Id = ${idCliente} AND activo = 1`;
+                   WHERE Id = ${id} AND activo = 1`;
 
    res = await DBACCESS(queryDB);
 

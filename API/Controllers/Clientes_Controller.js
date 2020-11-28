@@ -54,7 +54,7 @@ let ObtenerClientes = async (req, res) => {
 };
 
 let ObtenerClientePorId = async (req, res) => {
-   console.log("GET - Obtener Cliente por ID /Clientes/Id");
+   console.log("GET - Obtener Cliente por ID /Clientes/:Id");
 
    let params = req.params;
    let retorno = new Generico();
@@ -63,7 +63,7 @@ let ObtenerClientePorId = async (req, res) => {
    retorno = await srv.obtenerClientePorId(params.id);
 
    console.log(retorno);
-   res.json(retorno);
+   res.status(retorno.Status).json(retorno);
 };
 
 let AltaCliente = async (req, res) => {
@@ -78,7 +78,7 @@ let AltaCliente = async (req, res) => {
    console.log(retorno.Message);
    console.log(retorno.InfoExtra);
 
-   res.json(retorno);
+   res.status(retorno.Status).json(retorno);
 };
 
 let EditarCliente = async (req, res) => {
@@ -94,7 +94,7 @@ let EditarCliente = async (req, res) => {
    console.log(retorno.Message);
    console.log(retorno.InfoExtra);
 
-   res.json(retorno);
+   res.status(retorno.Status).json(retorno);
 };
 
 let BajaCliente = async (req, res) => {
@@ -109,7 +109,7 @@ let BajaCliente = async (req, res) => {
    console.log(retorno.Message);
    console.log(retorno.InfoExtra);
 
-   res.json(retorno);
+   res.status(retorno.Status).json(retorno);
 };
 
 module.exports = { ObtenerClientes, ObtenerClientePorId, AltaCliente, EditarCliente, BajaCliente };

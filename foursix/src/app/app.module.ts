@@ -15,11 +15,9 @@ import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { HttpClientModule } from '@angular/common/http';
 
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
-import { NgSelectModule } from '@ng-select/ng-select';
-import { InventarioFormComponent } from './components/inventario-form/inventario-form.component';
 
 @NgModule({
-  declarations: [AppComponent, InventarioFormComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

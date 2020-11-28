@@ -37,17 +37,16 @@ export class InventarioFormComponent implements OnInit {
   }
 
   enviar() {
-    let cliente: InventarioInterface = {
-      Id: parseInt(this.inventarioForm.controls.Id.value),
-      Fecha: this.inventarioForm.controls.Fecha.value,
-      Telefono: this.clienteForm.controls.Telefono.value,
-      Direccion: this.clienteForm.controls.Direccion.value,
-      Rut: parseInt(this.clienteForm.controls.Rut.value),
-      RazonSocial: this.clienteForm.controls.RazonSocial.value,
-      Activo: this.clienteForm.controls.Activo.value,
-    };
-
-    this.onSubmit.emit({ formulario: this.clienteForm, objeto: cliente });
+    // let cliente: InventarioInterface = {
+    //   Id: parseInt(this.inventarioForm.controls.Id.value),
+    //   Fecha: this.inventarioForm.controls.Fecha.value,
+    //   Telefono: this.clienteForm.controls.Telefono.value,
+    //   Direccion: this.clienteForm.controls.Direccion.value,
+    //   Rut: parseInt(this.clienteForm.controls.Rut.value),
+    //   RazonSocial: this.clienteForm.controls.RazonSocial.value,
+    //   Activo: this.clienteForm.controls.Activo.value,
+    // };
+    // this.onSubmit.emit({ formulario: this.clienteForm, objeto: cliente });
   }
 
   limpiar() {

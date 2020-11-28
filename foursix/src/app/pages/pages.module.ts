@@ -1,3 +1,4 @@
+import { InventarioFormComponent } from './../components/inventario-form/inventario-form.component';
 import { ClienteFormComponent } from './../components/cliente-form/cliente-form.component';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { CommonModule } from '@angular/common';
@@ -41,6 +42,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
     NuevoProveedorComponent,
     ProveedorFormComponent,
     ClienteFormComponent,
+    InventarioFormComponent,
     ListaProveedorComponent,
     TarjetaProveedorComponent,
     NuevoClienteComponent,

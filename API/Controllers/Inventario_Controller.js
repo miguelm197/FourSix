@@ -12,7 +12,20 @@ let AltaInventario = async (req, res) => {
 
    console.log(retorno.Message);
 
-   res.json(retorno);
+   res.status(retorno.Status).json(retorno);
 };
 
-module.exports = { AltaInventario };
+let ObtenerInventarioPorId = async (req, res) => {
+   console.log("GET - Obtener Inventario por ID /inventario/:Id \n");
+
+   let params = req.params;
+   let retorno = new Generico();
+
+   const srv = new Inventario_Service();
+   retorno = await srv.obtenerInventarioPorId(params.id);
+
+   console.log(retorno);
+   res.status(retorno.Status).json(retorno);
+};
+
+module.exports = { ObtenerInventarioPorId, AltaInventario };

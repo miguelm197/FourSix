@@ -1,6 +1,7 @@
 const { Generico } = require("../Entities/Genericos");
 const { Inventario, Item } = require("../Entities/Inventario");
 const Inventario_DAL = require("../DataAccess/DAL_Inventario");
+const { InventarioResult } = require("../Entities/Results/InventarioResult");
 
 class Inventario_Service {
    async altaInventario(invent) {
@@ -49,6 +50,45 @@ class Inventario_Service {
       }
 
       return retorno;
+   }
+
+   obtenerInventarioPorId(id) {
+      return new Promise(async (resolve) => {
+         let retorno = new Generico();
+
+         let resBD = await Inventario_DAL.ObtenerInventarioPorId(id);
+
+         if (resBD.Error) {
+            resolve(retorno.set(false, 500, resBD.Message));
+         }
+
+         if (resBD.Data.length == 0) {
+            resolve(retorno.set(false, 400, "No se encontró un inventario con el identificador " + id));
+         }
+
+         resBD.Data.forEach((boleta) => {
+            let inventario = new InventarioResult();
+
+            inventario.Fecha = boleta.Fecha;
+            inventario.NumBoleta = boleta.NumBoleta;
+            inventario.IdBoleta = boleta.Id;
+            inventario.IdProveedor = boleta.IdProveedor;
+
+            Inventario_DAL.ObtenerItemsPorIdBoleta(boleta.Id).then((res) => {
+               if (res.Error) {
+                  resolve(retorno.set(false, 500, "Ha ocurrido un error al obtener los items para la boleta " + boleta.Id));
+               }
+
+               res.Data.forEach((item) => {
+                  inventario.Items.push(new Item(item));
+               });
+
+               retorno.Data = inventario;
+
+               resolve(retorno);
+            });
+         });
+      });
    }
 }
 

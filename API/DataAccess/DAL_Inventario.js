@@ -41,4 +41,25 @@ const InsertarItem = async (ite) => {
 
    return res;
 };
-module.exports = { InsertarInventario, InsertarItem };
+
+const ObtenerInventarioPorId = async (id) => {
+   let res = new DataBaseResult();
+
+   let queryDB = `   SELECT * FROM BOLETAS WHERE Id = ${id} `;
+
+   res = await DBACCESS(queryDB);
+
+   return res;
+};
+
+const ObtenerItemsPorIdBoleta = async (id) => {
+   let res = new DataBaseResult();
+
+   let queryDB = `   SELECT * FROM ITEMS WHERE IdBoleta = ${id} `;
+
+   res = await DBACCESS(queryDB);
+
+   return res;
+};
+
+module.exports = { InsertarInventario, InsertarItem, ObtenerInventarioPorId, ObtenerItemsPorIdBoleta };
