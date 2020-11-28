@@ -1,3 +1,4 @@
+import { NuevoInventarioComponent } from './inventario/nuevo-inventario/nuevo-inventario.component';
 import { ListaClienteComponent } from './clientes/lista-cliente/lista-cliente.component';
 import { NuevoClienteComponent } from './clientes/nuevo-cliente/nuevo-cliente.component';
 import { ListaProveedorComponent } from './proveedores/lista-proveedor/lista-proveedor.component';
@@ -38,6 +39,23 @@ const routes: Routes = [
           {
             path: 'alta',
             component: NuevoClienteComponent,
+          },
+          {
+            path: 'lista',
+            component: ListaClienteComponent,
+          },
+        ],
+      },
+      {
+        path: 'inventario',
+        children: [
+          {
+            path: '',
+            redirectTo: 'lista',
+          },
+          {
+            path: 'nuevo',
+            component: NuevoInventarioComponent,
           },
           {
             path: 'lista',

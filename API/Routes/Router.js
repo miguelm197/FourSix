@@ -5,6 +5,8 @@ const router = express.Router();
 // Controladores
 const Proveedores_Ctrl = require("../controllers/Proveedores_Controller");
 const Clientes_Ctrl = require("../Controllers/Clientes_Controller");
+const Inventario_Ctrl = require("../Controllers/Inventario_Controller");
+const Inventario_Controller = require("../Controllers/Inventario_Controller");
 
 // Proveedores
 router.route("/AltaProveedor").post(Proveedores_Ctrl.AltaProveedor);
@@ -19,6 +21,9 @@ router.route("/cliente/alta").post(Clientes_Ctrl.AltaCliente);
 router.route("/cliente/:id").get(Clientes_Ctrl.ObtenerClientePorId);
 router.route("/cliente/:id").put(Clientes_Ctrl.EditarCliente);
 router.route("/cliente/:id").delete(Clientes_Ctrl.BajaCliente);
+
+// Inventario
+router.route("/inventario/alta").post(Inventario_Controller.AltaInventario);
 
 app.use(router);
 

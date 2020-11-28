@@ -1,0 +1,23 @@
+<nb-card>
+    <nb-card-header>
+        Nuevo inventario
+    </nb-card-header>
+
+    <nb-card-body>
+        <div class="row">
+            <div class="col-12">
+                <!-- <app-cliente-form (onSubmit)="onSubmit($event)"></app-cliente-form> -->
+
+
+                <ng-select [(ngModel)]="selectedCar">
+                    <ng-option *ngFor="let car of cars" [value]="car.id">{{car.name}}</ng-option>
+                </ng-select>
+
+
+                <br><br><br><br>
+
+            </div>
+        </div>
+
+    </nb-card-body>
+</nb-card>

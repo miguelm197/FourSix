@@ -91,7 +91,7 @@ class Proveedores_Service {
          if (data.ErrorDetail) {
             let errorBD_message = data.ErrorDetail.message;
 
-            if (errorBD_message.indexOf("UC_Codigo")) {
+            if (errorBD_message.indexOf("UC_Codigo") > -1) {
                retorno.InfoExtra = "Ya existe un proveedor con el código: " + proveedor.Codigo;
             }
          }

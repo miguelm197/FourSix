@@ -1,11 +1,5 @@
 import { ProveedorInterface } from './../../interfaces/proveedor..interface';
-import {
-  Component,
-  Input,
-  OnInit,
-  TemplateRef,
-  ViewChild,
-} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-tarjeta-proveedor',

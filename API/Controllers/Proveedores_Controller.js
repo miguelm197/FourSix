@@ -66,7 +66,7 @@ let ObtenerProveedorPorId = async (req, res) => {
 };
 
 let AltaProveedor = async (req, res) => {
-   console.log("POST - Alta Proveedor /AltaProveedor");
+   console.log("POST - Alta Proveedor /AltaProveedor\n");
 
    let body = req.body;
    let retorno = new Generico();

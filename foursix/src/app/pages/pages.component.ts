@@ -49,6 +49,22 @@ export class PagesComponent implements OnInit {
         },
       ],
     },
+    {
+      title: 'Inventario',
+      icon: 'grid-outline',
+      children: [
+        {
+          title: 'Nuevo inventario',
+          icon: 'plus-circle-outline',
+          link: 'inventario/nuevo',
+        },
+        {
+          title: 'Lista de clientes',
+          icon: 'book-outline',
+          link: 'clientes/lista',
+        },
+      ],
+    },
     // {
     //   title: 'Login',
     //   icon: 'log-in-outline',

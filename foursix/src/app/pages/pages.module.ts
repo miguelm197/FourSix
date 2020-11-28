@@ -32,6 +32,8 @@ import { ProveedorFormComponent } from './../components/proveedor-form/proveedor
 import { TarjetaProveedorComponent } from './../components/tarjeta-proveedor/tarjeta-proveedor.component';
 import { NuevoClienteComponent } from './clientes/nuevo-cliente/nuevo-cliente.component';
 import { ListaClienteComponent } from './clientes/lista-cliente/lista-cliente.component';
+import { NuevoInventarioComponent } from './inventario/nuevo-inventario/nuevo-inventario.component';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,7 @@ import { ListaClienteComponent } from './clientes/lista-cliente/lista-cliente.co
     TarjetaProveedorComponent,
     NuevoClienteComponent,
     ListaClienteComponent,
+    NuevoInventarioComponent,
   ],
   imports: [
     CommonModule,
@@ -68,6 +71,7 @@ import { ListaClienteComponent } from './clientes/lista-cliente/lista-cliente.co
     NbDialogModule.forChild(),
     NbListModule,
     SweetAlert2Module,
+    NgSelectModule,
   ],
 })
 export class PagesModule {}
