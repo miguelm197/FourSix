@@ -8,10 +8,11 @@ class Generico {
       this.Extra = new Object();
    }
 
-   set(Ok, Status = 200, Message = "") {
+   set(Ok, Status = 200, Message = "", InfoExtra = "") {
       this.Ok = Ok;
       this.Status = Status;
       this.Message = Message;
+      this.InfoExtra = InfoExtra;
 
       return this;
    }
@@ -112,5 +113,5 @@ module.exports = {
    PagedResult,
    PagedQuery,
    Grid,
-   Sort
+   Sort,
 };

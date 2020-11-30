@@ -6,6 +6,10 @@ const sql = require("mssql");
 const DBACCESS = async function (consulta) {
    let dbResult = new DataBaseResult();
 
+   console.log(". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .");
+   console.log("\n" + consulta + "\n");
+   console.log(". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .");
+
    try {
       let pool = await sql.connect(config.DATABASE);
       let res = await pool.request().query(consulta);
@@ -18,7 +22,6 @@ const DBACCESS = async function (consulta) {
       dbResult.Error = err;
       dbResult.ErrorDetail = err;
       dbResult.Message = err.toString();
-
    } finally {
       return dbResult;
    }

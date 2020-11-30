@@ -10,12 +10,10 @@ const InsertarInventario = async (invent) => {
    if (!inventarioBD.IdProveedor) return res.set(true, "El proveedor es requerido");
    if (!inventarioBD.NumBoleta) return res.set(true, "El número de boleta es requerido");
 
-   let queryDB = `  INSERT INTO [dbo].[Boletas]
-                        ([NumBoleta], [Fecha], [IdProveedor])
-                    VALUES
-                        (${inventarioBD.NumBoleta}, ${inventarioBD.Fecha}, ${inventarioBD.IdProveedor})
+   let queryDB = `INSERT INTO [dbo].[Boletas] ([NumBoleta], [Fecha], [IdProveedor])
+   VALUES (${inventarioBD.NumBoleta}, ${inventarioBD.Fecha}, ${inventarioBD.IdProveedor})
 
-                    SELECT SCOPE_IDENTITY() AS NumBoleta`;
+   SELECT SCOPE_IDENTITY() AS NumBoleta`;
 
    res = await DBACCESS(queryDB);
 
@@ -32,10 +30,25 @@ const InsertarItem = async (ite) => {
    if (!itemBD.Costo) return res.set(true, "El costo es requerido");
    if (!itemBD.IdEstado) return res.set(true, "El estado es requerido");
 
-   let queryDB = `   INSERT INTO [dbo].[Items]
-                        ([IdBoleta], [Descripcion], [Costo], [IdEstado])
-                    VALUES
-                       (${itemBD.IdBoleta}, ${itemBD.Descripcion}, ${itemBD.Costo}, ${itemBD.IdEstado}) `;
+   let queryDB = `INSERT INTO [dbo].[Items] ([IdBoleta], [Descripcion], [Costo], [IdEstado])
+   VALUES (${itemBD.IdBoleta}, ${itemBD.Descripcion}, ${itemBD.Costo}, ${itemBD.IdEstado}) `;
+
+   res = await DBACCESS(queryDB);
+
+   return res;
+};
+
+const EditarInventarioPorId = async (invent, id, cambiarNumBoleta = false) => {
+   let res = new DataBaseResult();
+   let inventarioBD = new BD_Boleta(invent);
+
+   // Validar datos
+   if (!inventarioBD.IdProveedor) return res.set(true, "El proveedor es requerido");
+   if (!inventarioBD.NumBoleta) return res.set(true, "El número de boleta es requerido");
+
+   let queryDB = `UPDATE Boletas SET Fecha = ${inventarioBD.Fecha}, IdProveedor = ${inventarioBD.IdProveedor} 
+   ${cambiarNumBoleta ? ",NumBoleta=" + inventarioBD.NumBoleta : ""}
+   WHERE Id = ${id} `;
 
    res = await DBACCESS(queryDB);
 
@@ -45,7 +58,7 @@ const InsertarItem = async (ite) => {
 const ObtenerInventarioPorId = async (id) => {
    let res = new DataBaseResult();
 
-   let queryDB = `   SELECT * FROM BOLETAS WHERE Id = ${id} `;
+   let queryDB = `SELECT * FROM BOLETAS WHERE Id = ${id} `;
 
    res = await DBACCESS(queryDB);
 
@@ -55,11 +68,35 @@ const ObtenerInventarioPorId = async (id) => {
 const ObtenerItemsPorIdBoleta = async (id) => {
    let res = new DataBaseResult();
 
-   let queryDB = `   SELECT * FROM ITEMS WHERE IdBoleta = ${id} `;
+   let queryDB = `SELECT * FROM ITEMS WHERE IdBoleta = ${id} `;
 
    res = await DBACCESS(queryDB);
 
    return res;
 };
 
-module.exports = { InsertarInventario, InsertarItem, ObtenerInventarioPorId, ObtenerItemsPorIdBoleta };
+const EliminarItemsPorIdBoleta = async (idBoleta) => {
+   let res = new DataBaseResult();
+
+   let queryDB = `DELETE items WHERE IdBoleta = ${idBoleta} `;
+
+   res = await DBACCESS(queryDB);
+
+   return res;
+};
+
+const MovimientoItems = async (idBoleta) => {
+   let res = new DataBaseResult();
+   // TODO: Hacer consulta sobre los movimientos
+
+   return res;
+};
+
+module.exports = {
+   InsertarInventario,
+   InsertarItem,
+   EditarInventarioPorId,
+   ObtenerInventarioPorId,
+   ObtenerItemsPorIdBoleta,
+   EliminarItemsPorIdBoleta,
+};

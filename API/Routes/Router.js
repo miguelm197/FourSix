@@ -25,6 +25,7 @@ router.route("/cliente/:id").delete(Clientes_Ctrl.BajaCliente);
 // Inventario
 router.route("/inventario/:id").get(Inventario_Controller.ObtenerInventarioPorId);
 router.route("/inventario/alta").post(Inventario_Controller.AltaInventario);
+router.route("/inventario/:id").put(Inventario_Controller.EditarInventario);
 
 app.use(router);
 

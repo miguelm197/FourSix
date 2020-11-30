@@ -1,3 +1,4 @@
+import { ESTADO_ITEMS } from './../../utils/global';
 import { InventarioInterface } from './../../interfaces/inventario';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component, Input, OnInit } from '@angular/core';
@@ -13,20 +14,20 @@ export class InventarioFormComponent implements OnInit {
   constructor() {}
 
   textoBotonSubmit = 'INGRESAR BOLETA';
+  estadosItem = ESTADO_ITEMS;
 
   inventarioForm = new FormGroup({
     Id: new FormControl(null),
     Fecha: new FormControl(new Date(), Validators.required),
-    ProveedorId: new FormControl('', Validators.required),
-    NumInventario: new FormControl('', Validators.required),
-    Activo: new FormControl(true, Validators.compose([Validators.required])),
+    IdProveedor: new FormControl('', Validators.required),
+    NumBoleta: new FormControl('', Validators.required),
   });
 
   itemForm = new FormGroup({
     Id: new FormControl(null),
     Descripcion: new FormControl(new Date(), Validators.required),
     Costo: new FormControl('', Validators.required),
-    Estado: new FormControl('', Validators.required),
+    IdEstado: new FormControl('', Validators.required),
   });
 
   ngOnInit(): void {

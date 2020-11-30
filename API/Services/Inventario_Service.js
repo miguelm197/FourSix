@@ -27,7 +27,7 @@ class Inventario_Service {
          }
       } else {
          retorno.Message = "Inventario  creado correctamente";
-         retorno.Extra = { ...inventario, NumBoleta: data.Data[0]["NumBoleta"] };
+         retorno.Extra = { ...inventario, Id: data.Data[0]["NumBoleta"] };
 
          if (inventario.Items.length > 0) {
             inventario.Items.forEach((ite) => {
@@ -48,6 +48,75 @@ class Inventario_Service {
             });
          }
       }
+
+      return retorno;
+   }
+
+   async editarInventario(invent, id) {
+      let retorno = new Generico();
+      let inventario = new Inventario(invent);
+
+      console.log("SERVICIO ", inventario);
+
+      let dataActual = await Inventario_DAL.ObtenerInventarioPorId(id);
+
+      // Validar si existe previamente la boleta
+      if (dataActual.Cant == 0) {
+         return retorno.set(false, 400, "No se encuentra registrada la boleta con id " + id);
+      }
+
+      // Detecta si modificó el número de boleta, si no cambia entonces no se modifica en la BD
+      let cambiarNumBoleta = dataActual.Data[0].NumBoleta != inventario.NumBoleta;
+
+      let data = await Inventario_DAL.EditarInventarioPorId(inventario, id, cambiarNumBoleta);
+
+      // En caso de error al modificar el inventario, corta la ejecución
+      if (data.Error) {
+         retorno.set(false, 500, "Ha ocurrido un error al modificar el inventario " + id, data.Data);
+
+         if (data.ErrorDetail) {
+            let errorBD_message = data.ErrorDetail.message;
+
+            if (errorBD_message.indexOf("UNIQUE KEY") > -1) {
+               retorno.InfoExtra = "Ya existe la boleta con el código: " + inventario.NumBoleta;
+            }
+         }
+
+         return retorno;
+      }
+
+      // Eliminar los items actuales del inventario
+      let resEliminarItems = await Inventario_DAL.EliminarItemsPorIdBoleta(id);
+
+      if (resEliminarItems.Error) {
+         return retorno.set(false, 500, "Ha ocurrido un error al modificar el inventario " + id, data.Data);
+      }
+
+      // Darlos de alta los nuevos
+      if (inventario.Items.length > 0) {
+         inventario.Items.forEach((ite, index, array) => {
+            let item = new Item(ite);
+            item.IdBoleta = id;
+
+            Inventario_DAL.InsertarItem(item).then((dataItem) => {
+               console.log(item);
+
+               if (dataItem.Error) return retorno.set(false, 500, "Ha ocurrido un error al impactar el item '" + item.Descripcion + "'");
+
+               if (index == array.length - 1) {
+                  // Ultima iteracción
+
+                  retorno.Message = "Inventario  modificado correctamente";
+                  retorno.Extra = { ...inventario, Id: id };
+
+                  return retorno;
+               }
+            });
+         });
+      }
+
+      retorno.Message = "Inventario  modificado correctamente";
+      retorno.Extra = { ...inventario, Id: id };
 
       return retorno;
    }

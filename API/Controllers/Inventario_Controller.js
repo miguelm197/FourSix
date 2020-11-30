@@ -28,4 +28,20 @@ let ObtenerInventarioPorId = async (req, res) => {
    res.status(retorno.Status).json(retorno);
 };
 
-module.exports = { ObtenerInventarioPorId, AltaInventario };
+let EditarInventario = async (req, res) => {
+   console.log("PUT - Editar inventario /inventario/:id \n");
+
+   let body = req.body;
+   let param = req.params;
+
+   let retorno = new Generico();
+
+   const srv = new Inventario_Service();
+   retorno = await srv.editarInventario(body, param.id);
+
+   console.log(retorno.Message);
+
+   res.status(retorno.Status).json(retorno);
+};
+
+module.exports = { ObtenerInventarioPorId, AltaInventario, EditarInventario };
